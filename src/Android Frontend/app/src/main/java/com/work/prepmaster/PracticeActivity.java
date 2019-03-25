@@ -1,6 +1,5 @@
 package com.work.prepmaster;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,8 +19,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        Intent intentBack = new Intent(this, MainActivity.class);
         if(view == back)
-            startActivity(intentBack);
+            onBackPressed();
     }
 }

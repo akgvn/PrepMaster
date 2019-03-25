@@ -24,11 +24,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
     @Override
     public void onClick(View view) {
-        Intent intentBack = new Intent(this,MainActivity.class);
         Intent intentOptions = new Intent(this,ProfileOptionsActivity.class);
         Intent intentStatistic = new Intent(this,StatisticActivity.class);
         if(view == back)
-            startActivity(intentBack);
+            onBackPressed();
         if(view == options)
             startActivity(intentOptions);
         if(view == statistic)
