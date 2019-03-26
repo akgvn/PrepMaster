@@ -4,66 +4,95 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#dcdde1"
+    >
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="141dp"
         android:layout_height="52dp"
         android:text="Advertisement"
+        android:textColor="@color/TextColor1"
         android:textSize="@dimen/TextSize1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.562"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.911"
-        android:textColor="@color/TextColor1" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <Button
-        android:id="@+id/buttonProfile"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:id="@+id/login_page"
+        android:layout_width="230dp"
+        android:layout_height="49dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Profile"
+        android:layout_marginTop="140dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/BackButton1" />
+        app:layout_constraintTop_toBottomOf="@+id/buttonPlay" />
 
-    <Button
-        android:id="@+id/buttonOptions"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Options"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintRight_toLeftOf="@id/buttonProfile"
-        app:layout_constraintStart_toEndOf="@+id/buttonProfile"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/BackButton1" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="86dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="#ffffff"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="0dp">
+
+        <ImageView
+            android:id="@+id/buttonProfile"
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+
+            android:layout_marginEnd="40dp"
+            android:layout_marginRight="40dp"
+            android:layout_marginBottom="308dp"
+            android:src="@mipmap/user"
+            android:text="Profile"
+            android:textColor="#f7ffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+
+        <Button
+            android:id="@+id/buttonOptions"
+            android:layout_width="wrap_content"
+            android:layout_height="66dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginLeft="37dp"
+            android:layout_marginBottom="340dp"
+            android:layout_toRightOf="@+id/buttonProfile"
+            android:background="@color/BackButton1"
+            android:text="Options"
+            android:textColor="#f7ffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
 
     <Button
         android:id="@+id/buttonPlay"
-        android:layout_width="145dp"
-        android:layout_height="98dp"
+        android:layout_width="153dp"
+        android:layout_height="133dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="268dp"
+        android:background="@drawable/round_button"
         android:text="PLAY"
+        android:textSize="@dimen/TextSize1"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:background="@color/BackButton2"
-        android:textSize="@dimen/TextSize1"/>
+        app:layout_constraintVertical_bias="1.0" />
+
+
 
 </android.support.constraint.ConstraintLayout>
