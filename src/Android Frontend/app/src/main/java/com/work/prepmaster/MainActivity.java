@@ -9,8 +9,8 @@ import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button play, options, login_page;
-    private ImageView profile;
+    private Button login_page;
+    private ImageView profile , options , play;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

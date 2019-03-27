@@ -35,9 +35,9 @@
         app:layout_constraintTop_toBottomOf="@+id/buttonPlay" />
 
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="86dp"
+        android:layout_height="66dp"
         android:layout_alignParentBottom="true"
         android:layout_marginTop="8dp"
         android:background="#ffffff"
@@ -45,15 +45,15 @@
         app:layout_constraintTop_toBottomOf="@+id/textView"
         app:layout_constraintVertical_bias="1.0"
         tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp">
+        tools:layout_editor_absoluteX="16dp">
 
         <ImageView
             android:id="@+id/buttonProfile"
-            android:layout_width="79dp"
-            android:layout_height="79dp"
-
-            android:layout_marginEnd="40dp"
-            android:layout_marginRight="40dp"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+             android:layout_marginRight="10dp"
             android:layout_marginBottom="308dp"
             android:src="@mipmap/user"
             android:text="Profile"
@@ -61,32 +61,38 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <ImageView
+            android:id="@+id/imgviewSozluk"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/buttonOptions"
+            android:src="@mipmap/magnifying_glass_finder"
+            android:layout_marginLeft="20dp"
+            />
 
-        <Button
+        <ImageView
             android:id="@+id/buttonOptions"
-            android:layout_width="wrap_content"
-            android:layout_height="66dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginLeft="37dp"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="10dp"
             android:layout_marginBottom="340dp"
             android:layout_toRightOf="@+id/buttonProfile"
-            android:background="@color/BackButton1"
-            android:text="Options"
-            android:textColor="#f7ffff"
+            android:src="@mipmap/settings_work_tool"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
-    </LinearLayout>
+    </RelativeLayout>
 
-    <Button
+    <ImageView
         android:id="@+id/buttonPlay"
         android:layout_width="153dp"
         android:layout_height="133dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="268dp"
-        android:background="@drawable/round_button"
-        android:text="PLAY"
-        android:textSize="@dimen/TextSize1"
+        android:src="@mipmap/play_button1"
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
