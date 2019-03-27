@@ -4,31 +4,167 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#115377"
     tools:context=".PracticeActivity">
+
+    <TextView
+        android:id="@+id/textViewTemp"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#ffffff"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        android:text="Who ____ you go to the party with(Past)"
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="@dimen/TextSize1"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.556" />
 
     <Button
         android:id="@+id/buttonPracticeBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Back"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/BackButton1"/>
-
-    <TextView
-        android:id="@+id/textViewTemp"
-        android:layout_width="103dp"
-        android:layout_height="58dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="88dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
         android:layout_marginBottom="8dp"
-        android:text="PRACTISE"
-        android:textColor="@color/TextColor1"
-        android:textSize="@dimen/TextSize1"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:background="@color/BackButton1"
+        android:text="Back"
+        app:layout_constraintBottom_toTopOf="@+id/relativeLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout2" />
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout2"
+        android:layout_width="530dp"
+        android:layout_height="317dp"
+        android:background="#ffffff"
+        android:layout_below="@+id/textViewTemp"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="-87dp"
+        tools:layout_editor_absoluteY="162dp">
+
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button4"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:background="#537ad1"
+            android:text="is"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/button6"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/button5"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:background="#f7b721"
+            android:text="Dozot"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/button4"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/button3"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="20dp"
+            android:background="#26d5b6"
+            android:text="Will"
+            android:textSize="20dp" />
+
+
+        <Button
+            android:id="@+id/button3"
+            android:layout_width="303dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="140dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginRight="20dp"
+            android:background="#fe6c53"
+            android:text="did"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="#1c75d3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp">
+
+        <ImageView
+            android:id="@+id/buttonProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="308dp"
+            android:src="@mipmap/user"
+            android:text="Profile"
+            android:textColor="#f7ffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgviewTask"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/list1" />
+
+        <ImageView
+            android:id="@+id/imgviewSozluk"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewTask"
+            android:src="@mipmap/magnifying_glass_finder" />
+
+        <ImageView
+            android:id="@+id/imgviewHome"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewSozluk"
+            android:src="@mipmap/hom_eico_nsilhouette" />
+
+        <ImageView
+            android:id="@+id/imgviewHighScore"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewHome"
+            android:src="@mipmap/trophy" />
+
+
+    </RelativeLayout>
+
+
 </android.support.constraint.ConstraintLayout>
