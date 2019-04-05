@@ -10,7 +10,7 @@ import android.widget.ImageView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button login_page;
-    private ImageView profile , options , play;
+    private ImageView profile , options , play ,dictionary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +21,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         options    = findViewById(R.id.buttonOptions);
         profile    = findViewById(R.id.buttonProfile);
         login_page = findViewById( R.id.login_page );
+        dictionary = findViewById( R.id.imgviewSozluk );
 
         play.setOnClickListener(this);
         options.setOnClickListener(this);
         profile.setOnClickListener(this);
         login_page.setOnClickListener(this);
+        dictionary.setOnClickListener(this);
 
     }
 
@@ -35,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Intent intentOptions = new Intent(this, OptionsActivity.class);
         Intent intentProfile = new Intent(this, ProfileActivity.class);
         Intent intentLogin = new Intent(this, LoginActivity.class);
+        Intent intentDictionary = new Intent( this , Dictionary.class );
         if (view == play)
             startActivity(intentPlay);
         if (view == options)
@@ -43,6 +46,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intentProfile);
         if( view == login_page )
             startActivity(intentLogin);
+        if( view == dictionary )
+            startActivity(intentDictionary);
 
     }
 }
