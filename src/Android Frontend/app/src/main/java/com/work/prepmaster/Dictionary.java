@@ -67,7 +67,7 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
     private void cevapaBak(String response) {
         Gson gson = new Gson();
         ResponseModel responseModel = gson.fromJson(response,ResponseModel.class);
-
+        Toast.makeText(this, "\"GELDİİİİİ\"", Toast.LENGTH_LONG).show();
         if(responseModel.getSonuc() == 1){
 
             Bundle bundle;

@@ -4,7 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#ddd"
     tools:context=".OptionsActivity">
+
+    <!--
+
+//BİLDİRİM İÇİN OLAN KISIM BAŞLANGIÇ
+
+    //get the spinner from the xml.
+Spinner dropdown = findViewById(R.id.spinner_bildirim);
+
+//create a list of items for the spinner.
+String[] items = new String[]{"Açık", "Kapalı"};
+
+//create an adapter to describe how the items are displayed, adapters are used in several places in android.
+//There are multiple variations of this, but this is the basic variant.
+ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
+//set the spinners adapter to the previously created one.
+dropdown.setAdapter(adapter);
+
+
+
+
+
+//BİLDİRİM İÇİN OLAN KISIM BİTİŞ
+
+    //get the spinner from the xml.
+Spinner dropdown = findViewById(R.id.spinner_dil);
+
+//create a list of items for the spinner.
+String[] items = new String[]{"Türkçe", "İngilizce"};
+
+//create an adapter to describe how the items are displayed, adapters are used in several places in android.
+//There are multiple variations of this, but this is the basic variant.
+ArrayAdapter<String> adapter2 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, items);
+
+//set the spinners adapter to the previously created one.
+dropdown.setAdapter(adapter2);
+
+//DİL İÇİN OLAN KISIM BAŞLANGIÇ
+
+
+
+//DİL İÇİN OLAN KISIM BİTİŞ
+
+    -->
 
     <Button
         android:id="@+id/buttonOptionsBack"
@@ -14,6 +59,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginTop="16dp"
         android:text="Back"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:background="@color/BackButton1"/>
@@ -29,6 +75,136 @@
         android:textSize="@dimen/TextSize1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.457"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.012" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="136dp"
+        android:text="Bildirimler"
+        android:textColor="@color/TextColor1"
+        android:textSize="25sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="212dp"
+        android:text="Dil Seçimi"
+        android:textColor="@color/TextColor1"
+        android:textSize="25sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <Spinner
+        android:id="@+id/spinner_bildirim"
+        android:layout_width="123dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="@color/TextColor1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.725"
+        app:layout_constraintStart_toEndOf="@+id/textView6"
+        app:layout_constraintTop_toTopOf="@+id/textView6"></Spinner>
+
+    <Spinner
+        android:id="@+id/spinner_dil"
+        android:layout_width="123dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:backgroundTint="@color/TextColor1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.731"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/textView7"></Spinner>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="#1c75d3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp">
+
+        <ImageView
+            android:id="@+id/buttonProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="308dp"
+            android:src="@mipmap/user"
+            android:text="Profile"
+            android:textColor="#f7ffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgviewTask"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/list1" />
+
+        <ImageView
+            android:id="@+id/imgviewSozluk"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewTask"
+            android:src="@mipmap/magnifying_glass_finder"
+            />
+
+        <ImageView
+            android:id="@+id/imgviewHome"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewSozluk"
+            android:src="@mipmap/hom_eico_nsilhouette"
+            />
+
+        <ImageView
+            android:id="@+id/imgviewHighScore"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewHome"
+            android:src="@mipmap/trophy"
+            />
+
+
+
+    </RelativeLayout>
+
+
+
+
 </android.support.constraint.ConstraintLayout>
