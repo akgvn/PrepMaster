@@ -16,10 +16,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.activity_profile);
         back = findViewById(R.id.buttonProfileBack);
         back.setOnClickListener(this);
-        options = findViewById(R.id.buttonProfileOptions);
-        options.setOnClickListener(this);
-        statistic = findViewById(R.id.buttonStatistic);
-        statistic.setOnClickListener(this);
+        //options = findViewById(R.id.buttonProfileOptions);
+        //options.setOnClickListener(this);
+        //statistic = findViewById(R.id.buttonStatistic);
+        //statistic.setOnClickListener(this);
     }
 
     @Override
@@ -28,9 +28,9 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         Intent intentStatistic = new Intent(this,StatisticActivity.class);
         if(view == back)
             onBackPressed();
-        if(view == options)
-            startActivity(intentOptions);
-        if(view == statistic)
-            startActivity(intentStatistic);
+        //if(view == options)
+           // startActivity(intentOptions);
+      //  if(view == statistic)
+         //   startActivity(intentStatistic);
     }
 }
