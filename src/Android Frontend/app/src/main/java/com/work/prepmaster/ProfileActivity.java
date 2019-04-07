@@ -32,6 +32,6 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
            // startActivity(intentOptions);
       //  if(view == statistic)
          //   startActivity(intentStatistic);
-        //commit için ölesine eklednidfgdfgdf dfgdf
+        //commit için ölesine eklednidfgdfgdf dfgdf mistova - vrlcnn - vuralmustafaatak sdfsd
     }
 }
