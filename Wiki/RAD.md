@@ -51,12 +51,28 @@ PrepMaster will use SuperMemo algorithm to make sure students retain their knowl
 - It may also be packaged as APK and delivered through the Releases page of Github.
 
 ### Legal
-- No legel requirements known at this time.
+- No legal requirements known at this time.
 
 ## System models
 ### Scenarios
+#### Practicing English Words
+1. User launches the app and logs in.
+2. User picks the option for practicing.
+3. User decides what kind of practice that they want to do and starts practicing.
+4. App requests and downloads latest study data from the server.
+5. App shows the question.
+6. User answers the question (multiple-choice, filling the blanks etc.).
+7. App checks correctness of the answer.
+8. Correctness info gets logged to the database.
+9. Reminding algorithm calculates when to remind the user for studying a particular word.
+
 ### Use case model
+![UML Use Case Diagram](uml.png "UML Use Case Diagram")ö
+
 ### Object model
+
 ### Dynamic model
+
 ### User interface—navigational paths and screen mock-ups
+![UI Sketches](ui.png "PrepMaster UI")
 # Glossary
