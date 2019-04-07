@@ -8,7 +8,7 @@ PrepMaster shall include the (Çankaya University's) English preparatory school'
 ## Definitions, acronyms, and abbreviations
 None so far.
 ## References
-SuperMemo 2: [Insert Link here]
+SuperMemo 2:https://www.supermemo.com/en/archives1990-2015/english/ol/sm2
 ## Overview
 # Current system
 Currently, there is no digital system that helps the students learn the target vocabulary.
@@ -67,12 +67,17 @@ PrepMaster will use SuperMemo algorithm to make sure students retain their knowl
 9. Reminding algorithm calculates when to remind the user for studying a particular word.
 
 ### Use case model
-![UML Use Case Diagram](uml.png "UML Use Case Diagram")ö
+![UML Use Case Diagram](uml.png "UML Use Case Diagram")
 
 ### Object model
+![UML Class Diagram](UMLClassDforAndroid.svg "PrepMaster Class Diagram for Android Frontend")
+![Object Model for Questions](abstractobjectmodel.png "Object Model for Questions")
 
 ### Dynamic model
+![Sequence Diagram](Sequence.png "Sequence Diagram")
 
 ### User interface—navigational paths and screen mock-ups
 ![UI Sketches](ui.png "PrepMaster UI")
+
 # Glossary
+Not needed.
