@@ -43,18 +43,41 @@ Android app will be the front-end software that which will show and ask question
 
 ## Persistent data management
 
-There is a MySQL server to manage data for all users. The Android app will download the necessary data each time it runs.
+There will be a MySQL server to manage data for all users. The Android app will download the necessary data each time it runs.
 
 ## Access control and security
 
-The users will only be able to access their questions for each day and answer them. Later the app will send question data to the server.
+Each user will have an username and a password, this data will be stored in the database in encrypted form. 
 
-The server will do necessary calculations on the data sent from the app.
+The users will only be able to access their questions for each day and answer them. Later the app will send question data to the server using their own username & password data.
+
+After checking the authenticity of username & password, server will do necessary calculations on the data sent from the app and store the changes in the database for each user.
 
 No other admin intervention will be needed after deployment.
 
 ## Global software control
 
+The app and the server will communicate with a REST API and the JSON data sent through this API.
+
+Each change will be time stamped by the app and and the server will check the correctness of time data. If there are no problems, change will be applied.
+
 ## Boundary conditions
+
+### Start-up and shutdown
+
+PrepMaster app can be started and shut down easily. It will store the data to send the database in plain text until it is safely sent.
+
+When the PrepMaster server is started, it will start doing the Supermemo calculations for the most frequent users.
+
+When the PrepMaster server is shut down, it will make sure any data sent from the app is processed and stop accepting any more.
+
+### Error behaviour
+
+- A network failure in connection between a Android app and the server are interrupted.
+- A server failure in which the server is unexpectedly terminated.
+
+Network failure should not be fatal since the important data to be sent from an app is stored until it is confirmed sent to the database.
+
+Server failure can be fatal, frequent backups will be made to make sure a damage by server failure is minimal.
 
 # Subsystem services
