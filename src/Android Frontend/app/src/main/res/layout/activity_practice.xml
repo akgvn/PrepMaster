@@ -8,7 +8,7 @@
     tools:context=".PracticeActivity">
 
     <TextView
-        android:id="@+id/textViewTemp"
+        android:id="@+id/Question"
         android:layout_width="match_parent"
         android:layout_height="58dp"
         android:layout_marginTop="8dp"
@@ -46,16 +46,16 @@
         android:layout_width="530dp"
         android:layout_height="317dp"
         android:background="#ffffff"
-        android:layout_below="@+id/textViewTemp"
+        android:layout_below="@+id/Question"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-87dp"
         tools:layout_editor_absoluteY="162dp">
 
         <Button
-            android:id="@+id/button5"
+            android:id="@+id/answer3"
             android:layout_width="303dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button4"
+            android:layout_below="@+id/answer2"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
@@ -64,10 +64,10 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/button6"
+            android:id="@+id/answer4"
             android:layout_width="303dp"
             android:layout_height="wrap_content"
-            android:layout_below="@id/button5"
+            android:layout_below="@id/answer3"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
@@ -76,10 +76,10 @@
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/answer2"
             android:layout_width="303dp"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/button3"
+            android:layout_below="@+id/answer1"
             android:layout_marginLeft="140dp"
             android:layout_marginTop="15dp"
             android:layout_marginRight="20dp"
@@ -89,7 +89,7 @@
 
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/answer1"
             android:layout_width="303dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="140dp"
