@@ -1,5 +1,3 @@
-System Design Document
-
 # Introduction
 ## Purpose of the system
 PrepMaster aims to facilitate a English preparatory school students' learning.
@@ -81,3 +79,7 @@ Network failure should not be fatal since the important data to be sent from an 
 Server failure can be fatal, frequent backups will be made to make sure a damage by server failure is minimal.
 
 # Subsystem services
+
+PrepMaster server will have a REST API to communicate with the app. It is written in PHP.
+
+PrepMaster app will be written in Java for Android.
