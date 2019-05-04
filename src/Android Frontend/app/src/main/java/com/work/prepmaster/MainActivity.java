@@ -81,7 +81,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.e("MainActivity",error.getMessage());
                         }
                     });
-    }
+    }/*array*/
     private void request(String response) {
         Gson gson = new Gson();
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
