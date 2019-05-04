@@ -1,9 +1,8 @@
 package com.work.prepmaster;
-import android.os.Bundle;
+
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -13,12 +12,14 @@ import com.androidnetworking.common.Priority;
 import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.gson.Gson;
+import android.util.Log;
+import android.widget.ArrayAdapter;
 
 public class Dictionary extends AppCompatActivity implements View.OnClickListener {
     private EditText userNameEt;
     private Button loginBtn;
     private String[] str = new String[3];
-    ListView listemiz;
+    private ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,9 +29,9 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
     }
     private void init() {
         userNameEt = findViewById(R.id.kullanici_adi_et_id);
+        list = findViewById(R.id.listView1);
         loginBtn = findViewById(R.id.login_btn_id);
         loginBtn.setOnClickListener(this);
-        listemiz = findViewById(R.id.listView1);
         str[0] = "";
         str[1] = "";
         str[2] = "";
@@ -67,9 +68,7 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
     private void cevapaBak(String response) {
         Gson gson = new Gson();
         ResponseModel responseModel = gson.fromJson(response,ResponseModel.class);
-        Toast.makeText(this, "\"GELDİİİİİ\"", Toast.LENGTH_LONG).show();
         if(responseModel.getSonuc() == 1){
-
             Bundle bundle;
             bundle = responseModel.getMesaj();
             if(bundle != null){
@@ -77,9 +76,9 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
                 str[1] = bundle.getString("msg2");
                 str[2] = bundle.getString("msg3");
             }
-            ArrayAdapter<String> veriAdaptoru=new ArrayAdapter<String>
-                    (this, android.R.layout.simple_list_item_1, android.R.id.text1, str);
-            listemiz.setAdapter(veriAdaptoru);
+            ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>
+                    (this, android.R.layout.simple_list_item_1, str);
+            list.setAdapter(arrayAdapter);
         }
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();

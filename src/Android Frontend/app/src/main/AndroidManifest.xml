@@ -2,25 +2,22 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.work.prepmaster">
 
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.NoActionBar"
-        >
-
-        <!-- Action Bar ın orjinal hali android:theme="@style/AppTheme" -->
-
-        <activity android:name=".StatisticActivity"></activity>
+        android:theme="@style/Theme.AppCompat.NoActionBar">
+        <activity android:name=".Dictionary"></activity>
+        <activity android:name=".StatisticActivity" />
         <activity android:name=".Register2Activity" />
         <activity android:name=".Register1Activity" />
         <activity android:name=".ProfileOptionsActivity" />
         <activity android:name=".ProfileActivity" />
         <activity android:name=".OptionsActivity" />
         <activity android:name=".PracticeActivity" />
-        <activity android:name=".Dictionary"/>
         <activity android:name=".LoginActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>

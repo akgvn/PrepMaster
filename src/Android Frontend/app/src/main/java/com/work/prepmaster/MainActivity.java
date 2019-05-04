@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     private void userControl() {
-            AndroidNetworking.post("http://bilimtadinda.com/cankasoft/aranacak_kelime/servis.php")
+            AndroidNetworking.post("http://bilimtadinda.com/cankahard/words/index.php")
                     .addBodyParameter("selection" , "1")
                     .setPriority(Priority.MEDIUM)
                     .build()
@@ -85,7 +85,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void request(String response) {
         Gson gson = new Gson();
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
-        if(responseClass.getReq().length > 0){
+        if(responseClass.getReq() != null) {
             bundle.putStringArray("practice", responseClass.getReq());
         }
         else{

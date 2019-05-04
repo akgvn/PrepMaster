@@ -1,5 +1,4 @@
 package com.work.prepmaster;
-
 import android.os.Bundle;
 
 import com.google.gson.annotations.SerializedName;
@@ -10,6 +9,7 @@ public class ResponseModel {
     @SerializedName("msg1")
     private String msg1;
 
+    @SerializedName("msg2")
     private String msg2;
 
     @SerializedName("msg3")

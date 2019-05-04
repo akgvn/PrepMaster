@@ -2,13 +2,13 @@ package com.work.prepmaster;
 
 public class ResponseClass {
 
-    private String [] req;
+    private String [] array;
 
-    public ResponseClass(String [] req) {
-        this.req = req;
+    public ResponseClass(String [] array) {
+        this.array = array;
     }
 
     public String [] getReq() {
-        return req;
+        return array;
     }
 }

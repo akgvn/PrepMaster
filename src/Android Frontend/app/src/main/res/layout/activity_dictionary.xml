@@ -3,9 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0a2250"
+    android:background="@drawable/ana_ekran_gradient"
     tools:context=".Dictionary">
-
     <EditText
         android:id="@+id/kullanici_adi_et_id"
         android:layout_width="wrap_content"
@@ -32,16 +31,15 @@
         android:layout_marginRight="59dp"
         android:layout_toLeftOf="@id/kullanici_adi_et_id"
         android:text="Search" />
-
     <ListView
-        android:id="@+id/listView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:gravity="center"
         android:text="Kullanıcı Bilgileri"
-        android:textColor="@android:color/black"
-        android:textSize="25sp"
-        android:textStyle="bold" />
-
+        android:textStyle="bold"
+        android:backgroundTint="@android:color/white"
+        android:layout_marginTop="200dp"
+        android:id="@+id/listView1"
+        android:textSize="@dimen/tv_text_size"
+        android:textColor="@android:color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 </RelativeLayout>
