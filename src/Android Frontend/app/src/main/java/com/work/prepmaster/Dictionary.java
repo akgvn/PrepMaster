@@ -56,7 +56,7 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
                         @Override
                         public void onResponse(String  response) {
                             Log.i("Dictionary",response);
-                            cevapaBak(response);
+                            request(response);
                         }
                         @Override
                         public void onError(ANError error) {
@@ -65,7 +65,7 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
                     });
         }
     }
-    private void cevapaBak(String response) {
+    private void request(String response) {
         Gson gson = new Gson();
         ResponseModel responseModel = gson.fromJson(response,ResponseModel.class);
         if(responseModel.getSonuc() == 1){

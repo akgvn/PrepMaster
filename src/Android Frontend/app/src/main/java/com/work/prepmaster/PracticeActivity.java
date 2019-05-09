@@ -16,8 +16,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private Button ans4;
     private TextView question;
 
-    String [] str;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,12 +43,11 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private void init() {
         Bundle bundle = getIntent().getExtras();
         if(bundle.isEmpty()){
-            str = bundle.getStringArray("practice");
-            question.setText(str[0]);
-            ans1.setText(str[1]);
-            ans2.setText(str[2]);
-            ans3.setText(str[3]);
-            ans4.setText(str[4]);
+            question.setText(bundle.getString("sentence"));
+            ans1.setText(bundle.getString("msg1"));
+            ans2.setText(bundle.getString("msg1"));
+            ans3.setText(bundle.getString("msg2"));
+            ans4.setText(bundle.getString("msg2"));
         }
     }
 
@@ -58,29 +55,13 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         if(view == back)
             onBackPressed();
-        else if(view == ans1){
-            if(ans1.getText() == str[1])
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        }
-        else if(view == ans2){
-            if(ans2.getText() == str[1])
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        }
-        else if(view == ans3){
-            if(ans3.getText() == str[1])
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        }
-        else if(view == ans4){
-            if(ans4.getText() == str[1])
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        }
+        else if(view == ans1)
+            Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+        else if(view == ans2)
+            Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        else if(view == ans3)
+            Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        else if(view == ans4)
+            Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
     }
 }

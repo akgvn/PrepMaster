@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         profile.setOnClickListener(this);
         login_page.setOnClickListener(this);
         dictionary.setOnClickListener(this);
-
     }
 
     @Override
@@ -44,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view == play){
             Intent intentPlay = new Intent(this, PracticeActivity.class);
             userControl();
-            intentPlay.putExtra("practice", bundle);
+            intentPlay.putExtras(bundle);
             startActivity(intentPlay);
         }
         if (view == options){
@@ -66,7 +65,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     }
     private void userControl() {
-            AndroidNetworking.post("http://bilimtadinda.com/cankahard/words/index.php")
+            AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
                     .addBodyParameter("selection" , "1")
                     .setPriority(Priority.MEDIUM)
                     .build()
@@ -81,16 +80,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                             Log.e("MainActivity",error.getMessage());
                         }
                     });
-    }/*array*/
+    }
     private void request(String response) {
         Gson gson = new Gson();
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
         if(responseClass.getReq() != null) {
-            bundle.putStringArray("practice", responseClass.getReq());
+            bundle = responseClass.getReq();
+            Toast.makeText(this, "1" , Toast.LENGTH_SHORT).show();
         }
         else{
-        Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
-        finish();
+            Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }
