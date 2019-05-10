@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/ana_ekran_gradient"
+    android:background="#0a2250"
     tools:context=".Dictionary">
+
     <EditText
         android:id="@+id/kullanici_adi_et_id"
         android:layout_width="wrap_content"
@@ -27,6 +28,8 @@
         android:layout_alignTop="@+id/kullanici_adi_et_id"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        android:background="#ffffff"
+        android:textColor="#000000"
         android:layout_marginEnd="59dp"
         android:layout_marginRight="59dp"
         android:layout_toLeftOf="@id/kullanici_adi_et_id"
