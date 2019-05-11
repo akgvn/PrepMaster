@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         play       = findViewById(R.id.buttonPlay);
         options    = findViewById(R.id.buttonOptions);
@@ -40,12 +39,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == play){
-            Intent intentPlay = new Intent(this, PracticeActivity.class);
             userControl();
+            Intent intentPlay = new Intent(this, PracticeActivity.class);
             if(bundle != null) {
                 intentPlay.putExtras(bundle);
                 startActivity(intentPlay);
             }
+            else
+                Toast.makeText(this, "Amk2", Toast.LENGTH_SHORT).show();
         }
         if (view == options){
             Intent intentOptions = new Intent(this, OptionsActivity.class);

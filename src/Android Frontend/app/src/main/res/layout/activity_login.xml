@@ -10,7 +10,7 @@
 <!-- da4c3e -->
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logIn"
         android:layout_width="379dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -64,7 +64,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/register"
         android:layout_width="379dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -77,7 +77,7 @@
         android:textColor="#0a2250"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button" />
+        app:layout_constraintTop_toBottomOf="@+id/logIn" />
 
     <TextView
         android:layout_width="match_parent"
