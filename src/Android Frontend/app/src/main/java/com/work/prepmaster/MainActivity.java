@@ -37,14 +37,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         login_page.setOnClickListener(this);
         dictionary.setOnClickListener(this);
     }
-
     @Override
     public void onClick(View view) {
         if (view == play){
             Intent intentPlay = new Intent(this, PracticeActivity.class);
             userControl();
-            intentPlay.putExtras(bundle);
-            startActivity(intentPlay);
+            if(bundle != null) {
+                intentPlay.putExtras(bundle);
+                startActivity(intentPlay);
+            }
         }
         if (view == options){
             Intent intentOptions = new Intent(this, OptionsActivity.class);
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intentDictionary = new Intent( this , Dictionary.class );
             startActivity(intentDictionary);
         }
-
     }
     private void userControl() {
             AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
@@ -86,7 +86,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
-            Toast.makeText(this, "1" , Toast.LENGTH_SHORT).show();
         }
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();

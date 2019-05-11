@@ -42,12 +42,12 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     private void init() {
         Bundle bundle = getIntent().getExtras();
-        if(bundle.isEmpty()){
+        if(bundle != null){
             question.setText(bundle.getString("sentence"));
             ans1.setText(bundle.getString("msg1"));
-            ans2.setText(bundle.getString("msg1"));
-            ans3.setText(bundle.getString("msg2"));
-            ans4.setText(bundle.getString("msg2"));
+            ans2.setText(bundle.getString("msg3"));
+            ans3.setText(bundle.getString("msg4"));
+            ans4.setText(bundle.getString("msg5"));
         }
     }
 
