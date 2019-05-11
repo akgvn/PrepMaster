@@ -49,8 +49,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             ans3.setText(bundle.getString("msg4"));
             ans4.setText(bundle.getString("msg5"));
         }
-        else
-            Toast.makeText(this, "Amk", Toast.LENGTH_SHORT).show();
     }
 
     @Override

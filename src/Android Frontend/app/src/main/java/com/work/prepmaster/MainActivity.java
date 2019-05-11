@@ -40,13 +40,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == play){
             userControl();
-            Intent intentPlay = new Intent(this, PracticeActivity.class);
+            Intent intentPlay = new Intent(MainActivity.this, PracticeActivity.class);
             if(bundle != null) {
                 intentPlay.putExtras(bundle);
                 startActivity(intentPlay);
             }
-            else
-                Toast.makeText(this, "Amk2", Toast.LENGTH_SHORT).show();
         }
         if (view == options){
             Intent intentOptions = new Intent(this, OptionsActivity.class);
