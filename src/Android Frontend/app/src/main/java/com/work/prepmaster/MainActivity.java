@@ -23,7 +23,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         play       = findViewById(R.id.buttonPlay);
         options    = findViewById(R.id.buttonOptions);
@@ -36,16 +35,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         profile.setOnClickListener(this);
         login_page.setOnClickListener(this);
         dictionary.setOnClickListener(this);
-
     }
-
     @Override
     public void onClick(View view) {
         if (view == play){
-            Intent intentPlay = new Intent(this, PracticeActivity.class);
             userControl();
-            intentPlay.putExtra("practice", bundle);
-            startActivity(intentPlay);
+            Intent intentPlay = new Intent(MainActivity.this, PracticeActivity.class);
+            if(bundle != null) {
+                intentPlay.putExtras(bundle);
+                startActivity(intentPlay);
+            }
         }
         if (view == options){
             Intent intentOptions = new Intent(this, OptionsActivity.class);
@@ -63,10 +62,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intentDictionary = new Intent( this , Dictionary.class );
             startActivity(intentDictionary);
         }
-
     }
     private void userControl() {
-            AndroidNetworking.post("http://bilimtadinda.com/cankasoft/aranacak_kelime/servis.php")
+            AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
                     .addBodyParameter("selection" , "1")
                     .setPriority(Priority.MEDIUM)
                     .build()
@@ -85,12 +83,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void request(String response) {
         Gson gson = new Gson();
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
-        if(responseClass.getReq().length > 0){
-            bundle.putStringArray("practice", responseClass.getReq());
+        if(responseClass.getReq() != null) {
+            bundle = responseClass.getReq();
         }
         else{
-        Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
-        finish();
+            Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }

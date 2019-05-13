@@ -11,10 +11,10 @@ public class ProfileOptionsActivity extends AppCompatActivity implements View.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+        super.onCreate(savedInstanceState);/*
         setContentView(R.layout.activity_profile_options);
         back = findViewById(R.id.buttonProfileOptionsBack);
-        back.setOnClickListener(this);
+        back.setOnClickListener(this);*/
     }
 
     @Override

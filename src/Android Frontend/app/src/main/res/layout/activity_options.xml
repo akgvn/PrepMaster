@@ -51,19 +51,6 @@ dropdown.setAdapter(adapter2);
 
     -->
 
-    <Button
-        android:id="@+id/buttonOptionsBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Back"
-
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:background="@color/BackButton1"/>
-
     <TextView
         android:id="@+id/Question"
         android:layout_width="103dp"
@@ -75,10 +62,9 @@ dropdown.setAdapter(adapter2);
         android:textSize="@dimen/TextSize1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.012" />
+        app:layout_constraintVertical_bias="0.036" />
 
     <TextView
         android:id="@+id/textView6"

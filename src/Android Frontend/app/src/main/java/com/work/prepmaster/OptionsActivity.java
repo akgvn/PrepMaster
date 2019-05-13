@@ -13,7 +13,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
-        back = findViewById(R.id.buttonOptionsBack);
+        //back = findViewById(R.id.buttonOptionsBack);
         back.setOnClickListener(this);
     }
 

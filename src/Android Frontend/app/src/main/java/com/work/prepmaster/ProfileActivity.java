@@ -14,8 +14,8 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
-        back = findViewById(R.id.buttonProfileBack);
-        back.setOnClickListener(this);
+        //back = findViewById(R.id.buttonProfileBack);
+       // back.setOnClickListener(this);
         //options = findViewById(R.id.buttonProfileOptions);
         //options.setOnClickListener(this);
         //statistic = findViewById(R.id.buttonStatistic);
