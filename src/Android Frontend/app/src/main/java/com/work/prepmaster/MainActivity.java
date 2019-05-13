@@ -40,11 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         if (view == play){
             userControl();
-            Intent intentPlay = new Intent(MainActivity.this, PracticeActivity.class);
-            if(bundle != null) {
-                intentPlay.putExtras(bundle);
-                startActivity(intentPlay);
-            }
         }
         if (view == options){
             Intent intentOptions = new Intent(this, OptionsActivity.class);
@@ -85,6 +80,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
+            Intent intentPlay = new Intent(MainActivity.this, PracticeActivity.class);
+            if(bundle != null) {
+                intentPlay.putExtras(bundle);
+                startActivity(intentPlay);
+            }
         }
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();

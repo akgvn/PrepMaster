@@ -41,9 +41,14 @@ public class Register1Activity extends AppCompatActivity implements View.OnClick
     @Override
     public void onClick(View v) {
         Intent intentLogIn = new Intent(this, MainActivity.class);
+        String pass = password.getText().toString();
+        String rePass = rePassword.getText().toString();
         if(v == register){
-            Toast.makeText(this, "! Success !", Toast.LENGTH_SHORT).show();
-            post();
+            if(pass.equals(rePass)){
+                post();
+            }
+            else
+                Toast.makeText(this, "Passwords are different", Toast.LENGTH_SHORT).show();
         }
         if(v == logIn){
             startActivity(intentLogIn);
@@ -51,10 +56,9 @@ public class Register1Activity extends AppCompatActivity implements View.OnClick
     }
     private void post() {
         AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
-                .addBodyParameter("userName" , (String) userName.getText())
-                .addBodyParameter("eMail" , (String) eMail.getText())
-                .addBodyParameter("password" , (String) password.getText())
-                .addBodyParameter("rePassword" , (String) rePassword.getText())
+                .addBodyParameter("userName" , userName.getText().toString())
+                .addBodyParameter("eMail" , eMail.getText().toString())
+                .addBodyParameter("password" , password.getText().toString())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsString(new StringRequestListener() {
