@@ -135,7 +135,7 @@ dropdown.setAdapter(adapter2);
         tools:layout_editor_absoluteX="27dp">
 
         <ImageView
-            android:id="@+id/buttonProfile"
+            android:id="@+id/imgviewProfile"
             android:layout_width="wrap_content"
             android:layout_height="50dp"
             android:layout_alignParentRight="true"

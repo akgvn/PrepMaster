@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0a2250"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/ana_ekran_gradient"
     tools:context=".Dictionary">
 
     <EditText
@@ -34,15 +35,84 @@
         android:layout_marginRight="59dp"
         android:layout_toLeftOf="@id/kullanici_adi_et_id"
         android:text="Search" />
+
     <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="521dp"
+        android:layout_marginTop="200dp"
+        android:backgroundTint="@android:color/white"
         android:gravity="center"
         android:text="Kullanıcı Bilgileri"
-        android:textStyle="bold"
-        android:backgroundTint="@android:color/white"
-        android:layout_marginTop="200dp"
-        android:id="@+id/listView1"
-        android:textSize="@dimen/tv_text_size"
         android:textColor="@android:color/white"
+        android:textSize="@dimen/tv_text_size"
+        android:textStyle="bold" />
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="66dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginTop="8dp"
+        android:background="#1c75d3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="1.0"
+        tools:ignore="MissingConstraints"
+        tools:layout_editor_absoluteX="27dp">
+
+        <ImageView
+            android:id="@+id/imgviewProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="308dp"
+            android:src="@mipmap/user"
+            android:text="Profile"
+            android:textColor="#f7ffff"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/imgviewTask"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/list1" />
+
+        <ImageView
+            android:id="@+id/imgviewSozluk"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewTask"
+            android:src="@mipmap/magnifying_glass_finder"
+            />
+
+        <ImageView
+            android:id="@+id/imgviewHome"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewSozluk"
+            android:src="@mipmap/hom_eico_nsilhouette"
+            />
+
+        <ImageView
+            android:id="@+id/imgviewHighScore"
+            android:layout_width="60dp"
+            android:layout_height="50dp"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toRightOf="@id/imgviewHome"
+            android:src="@mipmap/trophy"
+            />
+
+
+
+    </RelativeLayout>
 </RelativeLayout>

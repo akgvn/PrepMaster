@@ -17,8 +17,13 @@ import com.google.gson.Gson;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button login_page;
-    private ImageView profile , options , play ,dictionary;
-    Bundle bundle = new Bundle();
+    private ImageView options , play;
+
+    private ImageView task;
+    private ImageView dict;
+    private ImageView home;
+    private ImageView highScore;
+    private ImageView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,15 +31,26 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         play       = findViewById(R.id.buttonPlay);
         options    = findViewById(R.id.buttonOptions);
-        profile    = findViewById(R.id.buttonProfile);
         login_page = findViewById( R.id.login_page );
-        dictionary = findViewById( R.id.imgviewSozluk );
 
         play.setOnClickListener(this);
         options.setOnClickListener(this);
-        profile.setOnClickListener(this);
         login_page.setOnClickListener(this);
-        dictionary.setOnClickListener(this);
+
+        task = findViewById(R.id.imgviewTask);
+        task.setOnClickListener(this);
+
+        dict = findViewById(R.id.imgviewSozluk);
+        dict.setOnClickListener(this);
+
+        home = findViewById(R.id.imgviewHome);
+        home.setOnClickListener(this);
+
+        highScore = findViewById(R.id.imgviewHighScore);
+        highScore.setOnClickListener(this);
+
+        profile = findViewById(R.id.imgviewProfile);
+        profile.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
@@ -45,17 +61,29 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             Intent intentOptions = new Intent(this, OptionsActivity.class);
             startActivity(intentOptions);
         }
-        if (view == profile){
-            Intent intentProfile = new Intent(this, ProfileActivity.class);
-            startActivity(intentProfile);
-        }
         if( view == login_page ){
             Intent intentLogin = new Intent(this, LoginActivity.class);
             startActivity(intentLogin);
         }
-        if( view == dictionary ){
+        if(view == task){
+            Intent intentOptions = new Intent( this , OptionsActivity.class );
+            startActivity(intentOptions);
+        }
+        if(view == dict){
             Intent intentDictionary = new Intent( this , Dictionary.class );
             startActivity(intentDictionary);
+        }
+        if(view == home){
+            Intent intentHome = new Intent( this , MainActivity.class );
+            startActivity(intentHome);
+        }
+        if(view == highScore){
+            Intent intentStatistic = new Intent( this , StatisticActivity.class );
+            startActivity(intentStatistic);
+        }
+        if(view == profile){
+            Intent intentProfile = new Intent( this , ProfileActivity.class );
+            startActivity(intentProfile);
         }
     }
     private void userControl() {
@@ -78,9 +106,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void request(String response) {
         Gson gson = new Gson();
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
+        Bundle bundle;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
-            Intent intentPlay = new Intent(MainActivity.this, PracticeActivity.class);
+            Intent intentPlay = new Intent(this, PracticeActivity.class);
             if(bundle != null) {
                 intentPlay.putExtras(bundle);
                 startActivity(intentPlay);

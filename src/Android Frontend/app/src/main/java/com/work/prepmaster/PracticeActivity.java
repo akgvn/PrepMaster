@@ -1,15 +1,24 @@
 package com.work.prepmaster;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.google.gson.Gson;
+
 public class PracticeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button back;
+    private Button next;
     private Button ans1;
     private Button ans2;
     private Button ans3;
@@ -22,6 +31,9 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         setContentView(R.layout.activity_practice);
         back = findViewById(R.id.buttonPracticeBack);
         back.setOnClickListener(this);
+
+        next = findViewById(R.id.buttonNext);
+        next.setOnClickListener(this);
 
         ans1 = findViewById(R.id.answer1);
         ans1.setOnClickListener(this);
@@ -63,5 +75,42 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
         else if(view == ans4)
             Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        else if(view == next){
+            userControl();
+        }
+    }
+    private void userControl() {
+        AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
+                .addBodyParameter("selection" , "1")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String  response) {
+                        Log.i("PracticeActivity",response);
+                        request(response);
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        Log.e("PracticeActivity",error.getMessage());
+                    }
+                });
+    }
+    private void request(String response) {
+        Gson gson = new Gson();
+        ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
+        Bundle bundle;
+        if(responseClass.getReq() != null) {
+            bundle = responseClass.getReq();
+            Intent intentPlay = new Intent(this, PracticeActivity.class);
+            if(bundle != null) {
+                intentPlay.putExtras(bundle);
+                startActivity(intentPlay);
+            }
+        }
+        else{
+            Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
+            finish();
+        }
     }
 }

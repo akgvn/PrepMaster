@@ -1,10 +1,13 @@
 package com.work.prepmaster;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
@@ -20,11 +23,33 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
     private Button loginBtn;
     private String[] str = new String[3];
     private ListView list;
+    private ImageView task;
+    private ImageView dict;
+    private ImageView home;
+    private ImageView highScore;
+    private ImageView profile;
 
+    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dictionary);
+
+        task = findViewById(R.id.imgviewTask);
+        task.setOnClickListener(this);
+
+        dict = findViewById(R.id.imgviewSozluk);
+        dict.setOnClickListener(this);
+
+        home = findViewById(R.id.imgviewHome);
+        home.setOnClickListener(this);
+
+        highScore = findViewById(R.id.imgviewHighScore);
+        highScore.setOnClickListener(this);
+
+        profile = findViewById(R.id.imgviewProfile);
+        profile.setOnClickListener(this);
+
         init();
     }
     private void init() {
@@ -41,6 +66,26 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
         if(v == loginBtn){
             String userName = userNameEt.getText().toString().trim();
             userControl(userName);
+        }
+        if(v == task){
+            Intent intentOptions = new Intent( this , OptionsActivity.class );
+            startActivity(intentOptions);
+        }
+        if(v == dict){
+            Intent intentDictionary = new Intent( this , Dictionary.class );
+            startActivity(intentDictionary);
+        }
+        if(v == home){
+            Intent intentHome = new Intent( this , MainActivity.class );
+            startActivity(intentHome);
+        }
+        if(v == highScore){
+            Intent intentStatistic = new Intent( this , StatisticActivity.class );
+            startActivity(intentStatistic);
+        }
+        if(v == profile){
+            Intent intentProfile = new Intent( this , ProfileActivity.class );
+            startActivity(intentProfile);
         }
     }
     private void userControl(final String word) {
@@ -76,7 +121,7 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
                 str[1] = bundle.getString("msg2");
                 str[2] = bundle.getString("msg3");
             }
-            ArrayAdapter<String> arrayAdapter=new ArrayAdapter<String>
+            ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>
                     (this, android.R.layout.simple_list_item_1, str);
             list.setAdapter(arrayAdapter);
         }
