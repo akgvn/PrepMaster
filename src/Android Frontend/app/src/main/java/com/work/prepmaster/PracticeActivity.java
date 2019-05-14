@@ -59,7 +59,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private void init() {
         Bundle bundle = getIntent().getExtras();
         count = Integer.valueOf(bundle.getString("questCounter"));
-        Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
+        changeButton(bundle);
         if(count == 1)
             next.setText("SUBMIT");
         if(bundle != null){
@@ -75,14 +75,31 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         if(view == back)
             onBackPressed();
-        else if(view == ans1)
-            Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-        else if(view == ans2)
-            Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        else if(view == ans3)
-            Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        else if(view == ans4)
-            Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        else if(view == ans1){
+            if(ans1.getText().toString().equals(str))
+                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        }
+
+        else if(view == ans2){
+            if(ans2.getText().toString().equals(str))
+                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        }
+        else if(view == ans3){
+            if(ans3.getText().toString().equals(str))
+                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        }
+        else if(view == ans4){
+            if(ans4.getText().toString().equals(str))
+                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+            else
+                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+        }
         else if(view == next){
             if(count == 1){
                 Intent intent = new Intent(this, MainActivity.class);
@@ -130,7 +147,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     }
     private void changeButton(Bundle bundle){
         Random rand = new Random();
-        int rnd = rand.nextInt(5);
+        int rnd = rand.nextInt(4) + 1;
         str = bundle.getString("msg1");
         if(rnd == 2){
             bundle.putString("msg1", bundle.getString("msg3"));
@@ -144,5 +161,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             bundle.putString("msg1", bundle.getString("msg5"));
             bundle.putString("msg5", str);
         }
+        Toast.makeText(this, String.valueOf(rnd), Toast.LENGTH_SHORT).show();
     }
 }
