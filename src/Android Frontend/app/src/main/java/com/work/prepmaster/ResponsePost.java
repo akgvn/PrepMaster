@@ -2,11 +2,11 @@ package com.work.prepmaster;
 
 class ResponsePost {
 
-    private boolean ans;
-    public ResponsePost(boolean ans) {
+    private int ans;
+    public ResponsePost(int ans) {
         this.ans = ans;
     }
-    public boolean getPost() {
+    public int getPost() {
         return ans;
     }
 

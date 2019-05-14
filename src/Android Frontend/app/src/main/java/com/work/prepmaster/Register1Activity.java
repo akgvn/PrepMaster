@@ -55,10 +55,10 @@ public class Register1Activity extends AppCompatActivity implements View.OnClick
         }
     }
     private void post() {
-        AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
-                .addBodyParameter("userName" , userName.getText().toString())
-                .addBodyParameter("eMail" , eMail.getText().toString())
-                .addBodyParameter("password" , password.getText().toString())
+        AndroidNetworking.post("http://bilimtadinda.com/cankahard/uye_ol.php")
+                .addBodyParameter("user_nick_name" , userName.getText().toString())
+                .addBodyParameter("user_email" , eMail.getText().toString())
+                .addBodyParameter("user_password" , password.getText().toString())
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsString(new StringRequestListener() {
@@ -77,10 +77,20 @@ public class Register1Activity extends AppCompatActivity implements View.OnClick
         Gson gson = new Gson();
         ResponsePost responsePost = gson.fromJson(response,ResponsePost.class);
         Intent intentLogIn = new Intent(this, LoginActivity.class);
-        if(responsePost.getPost()) {
+        if(responsePost.getPost() == 6) {
             startActivity(intentLogIn);
             Toast.makeText(this, "! Success !", Toast.LENGTH_SHORT).show();
         }
+        else if(responsePost.getPost() == 5)
+            Toast.makeText(this, "eMail already exists", Toast.LENGTH_SHORT).show();
+        else if(responsePost.getPost() == 4)
+            Toast.makeText(this, "user name already exists", Toast.LENGTH_SHORT).show();
+        else if(responsePost.getPost() == 3)
+            Toast.makeText(this, "Character overflow", Toast.LENGTH_SHORT).show();
+        else if(responsePost.getPost() == 2)
+            Toast.makeText(this, "Texts can't be empty.", Toast.LENGTH_SHORT).show();
+        else if(responsePost.getPost() == 1)
+            Toast.makeText(this, "System error", Toast.LENGTH_SHORT).show();
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
             finish();

@@ -52,7 +52,7 @@
 
     <Button
         android:id="@+id/answer3"
-        android:layout_width="299dp"
+        android:layout_width="303dp"
         android:layout_height="wrap_content"
         android:layout_below="@+id/answer2"
         android:layout_marginTop="20dp"
@@ -66,7 +66,7 @@
 
     <Button
         android:id="@+id/answer4"
-        android:layout_width="305dp"
+        android:layout_width="303dp"
         android:layout_height="wrap_content"
         android:layout_below="@id/answer3"
         android:layout_marginTop="8dp"
