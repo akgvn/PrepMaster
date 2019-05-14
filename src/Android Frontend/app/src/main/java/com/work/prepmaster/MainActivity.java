@@ -16,7 +16,6 @@ import com.google.gson.Gson;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private Button login_page;
     private ImageView options , play;
 
     private ImageView task;
@@ -32,9 +31,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         play       = findViewById(R.id.buttonPlay);
         options    = findViewById(R.id.buttonOptions);
 
+
         play.setOnClickListener(this);
         options.setOnClickListener(this);
-        login_page.setOnClickListener(this);
 
         task = findViewById(R.id.imgviewTask);
         task.setOnClickListener(this);
@@ -59,10 +58,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (view == options){
             Intent intentOptions = new Intent(this, OptionsActivity.class);
             startActivity(intentOptions);
-        }
-        if( view == login_page ){
-            Intent intentLogin = new Intent(this, LoginActivity.class);
-            startActivity(intentLogin);
         }
         if(view == task){
             Intent intentOptions = new Intent( this , OptionsActivity.class );
