@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,6 +29,13 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private TextView question;
     private int count;
     private String str;
+    private boolean hold = true;
+
+    private ImageView task;
+    private ImageView dict;
+    private ImageView home;
+    private ImageView highScore;
+    private ImageView profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +61,21 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
         question = findViewById(R.id.Question);
 
+        task = findViewById(R.id.imgviewTask);
+        task.setOnClickListener(this);
+
+        dict = findViewById(R.id.imgviewSozluk);
+        dict.setOnClickListener(this);
+
+        home = findViewById(R.id.imgviewHome);
+        home.setOnClickListener(this);
+
+        highScore = findViewById(R.id.imgviewHighScore);
+        highScore.setOnClickListener(this);
+
+        profile = findViewById(R.id.imgviewProfile);
+        profile.setOnClickListener(this);
+
         init();
     }
 
@@ -73,33 +96,35 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if(view == back)
-            onBackPressed();
-        else if(view == ans1){
-            if(ans1.getText().toString().equals(str))
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        }
+        if(hold){
+            if(view == ans1){
+                if(ans1.getText().toString().equals(str))
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
 
-        else if(view == ans2){
-            if(ans2.getText().toString().equals(str))
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            else if(view == ans2){
+                if(ans2.getText().toString().equals(str))
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
+            else if(view == ans3){
+                if(ans3.getText().toString().equals(str))
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
+            else if(view == ans4){
+                if(ans4.getText().toString().equals(str))
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
         }
-        else if(view == ans3){
-            if(ans3.getText().toString().equals(str))
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        }
-        else if(view == ans4){
-            if(ans4.getText().toString().equals(str))
-                Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-            else
-                Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-        }
+        else if(view == back)
+            onBackPressed();
         else if(view == next){
             if(count == 1){
                 Intent intent = new Intent(this, MainActivity.class);
@@ -108,6 +133,31 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             else
                 userControl();
         }
+
+        else if(view == task){
+            Intent intentOptions = new Intent( this , OptionsActivity.class );
+            startActivity(intentOptions);
+        }
+        else if(view == dict){
+            Intent intentDictionary = new Intent( this , Dictionary.class );
+            startActivity(intentDictionary);
+        }
+        else if(view == home){
+            Intent intentHome = new Intent( this , MainActivity.class );
+            startActivity(intentHome);
+        }
+        else if(view == highScore){
+            Intent intentStatistic = new Intent( this , StatisticActivity.class );
+            startActivity(intentStatistic);
+        }
+        else if(view == profile){
+            Intent intentProfile = new Intent( this , ProfileActivity.class );
+            startActivity(intentProfile);
+        }
+        else{
+            Toast.makeText(this, "You already choose", Toast.LENGTH_SHORT).show();
+        }
+        hold = false;
     }
     private void userControl() {
         AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
