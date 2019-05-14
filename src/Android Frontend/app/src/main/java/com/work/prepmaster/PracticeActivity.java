@@ -15,6 +15,8 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.gson.Gson;
 
+import java.util.Random;
+
 public class PracticeActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button back;
@@ -24,6 +26,8 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private Button ans3;
     private Button ans4;
     private TextView question;
+    private int count;
+    private String str;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,10 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     private void init() {
         Bundle bundle = getIntent().getExtras();
+        count = Integer.valueOf(bundle.getString("questCounter"));
+        Toast.makeText(this, String.valueOf(count), Toast.LENGTH_SHORT).show();
+        if(count == 1)
+            next.setText("SUBMIT");
         if(bundle != null){
             question.setText(bundle.getString("sentence"));
             ans1.setText(bundle.getString("msg1"));
@@ -76,7 +84,12 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         else if(view == ans4)
             Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
         else if(view == next){
-            userControl();
+            if(count == 1){
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
+            }
+            else
+                userControl();
         }
     }
     private void userControl() {
@@ -100,8 +113,10 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         Gson gson = new Gson();
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
         Bundle bundle;
+        count--;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
+            bundle.putString("questCounter", String.valueOf(count));
             Intent intentPlay = new Intent(this, PracticeActivity.class);
             if(bundle != null) {
                 intentPlay.putExtras(bundle);
@@ -111,6 +126,23 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
             finish();
+        }
+    }
+    private void changeButton(Bundle bundle){
+        Random rand = new Random();
+        int rnd = rand.nextInt(5);
+        str = bundle.getString("msg1");
+        if(rnd == 2){
+            bundle.putString("msg1", bundle.getString("msg3"));
+            bundle.putString("msg3", str);
+        }
+        else if(rnd == 3){
+            bundle.putString("msg1", bundle.getString("msg4"));
+            bundle.putString("msg4", str);
+        }
+        else if(rnd == 4){
+            bundle.putString("msg1", bundle.getString("msg5"));
+            bundle.putString("msg5", str);
         }
     }
 }
