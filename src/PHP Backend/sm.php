@@ -23,7 +23,7 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
     $word_id = $_POST["word_id"]; // id of the word that user answered
     $grade = $_POST["grade"]; // Out of five
 
-    // TODO
+    print_r($_POST); // FIXME delete this later
 
 } else {
     echo "Invalid request!";
