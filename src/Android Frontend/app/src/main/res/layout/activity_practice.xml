@@ -47,7 +47,8 @@
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:layout_alignParentRight="true" />
 
     <Button
         android:id="@+id/answer3"

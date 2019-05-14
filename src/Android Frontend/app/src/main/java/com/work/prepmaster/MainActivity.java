@@ -31,7 +31,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         play       = findViewById(R.id.buttonPlay);
         options    = findViewById(R.id.buttonOptions);
-        login_page = findViewById( R.id.login_page );
 
         play.setOnClickListener(this);
         options.setOnClickListener(this);
