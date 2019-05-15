@@ -97,13 +97,13 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view) {
         if(hold){
+            hold = false;
             if(view == ans1){
                 if(ans1.getText().toString().equals(str))
                     Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
                 else
                     Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
             }
-
             else if(view == ans2){
                 if(ans2.getText().toString().equals(str))
                     Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
@@ -129,6 +129,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             if(count == 1){
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
+                finish();
             }
             else
                 userControl();
@@ -157,7 +158,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         else{
             Toast.makeText(this, "You already choose", Toast.LENGTH_SHORT).show();
         }
-        hold = false;
     }
     private void userControl() {
         AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
@@ -185,10 +185,9 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             bundle = responseClass.getReq();
             bundle.putString("questCounter", String.valueOf(count));
             Intent intentPlay = new Intent(this, PracticeActivity.class);
-            if(bundle != null) {
-                intentPlay.putExtras(bundle);
-                startActivity(intentPlay);
-            }
+            intentPlay.putExtras(bundle);
+            startActivity(intentPlay);
+            finish();
         }
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
@@ -211,6 +210,5 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             bundle.putString("msg1", bundle.getString("msg5"));
             bundle.putString("msg5", str);
         }
-        Toast.makeText(this, String.valueOf(rnd), Toast.LENGTH_SHORT).show();
     }
 }

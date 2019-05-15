@@ -47,7 +47,7 @@
         android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:ignore="MissingConstraints"
+        android:focusable="true"
         android:layout_alignParentRight="true" />
 
     <Button
