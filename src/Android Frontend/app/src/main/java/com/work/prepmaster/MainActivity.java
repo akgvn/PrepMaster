@@ -103,7 +103,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bundle;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
-            bundle.putString("questCounter", "5");
             Intent intentPlay = new Intent(this, PracticeActivity.class);
             if(bundle != null) {
                 intentPlay.putExtras(bundle);

@@ -27,7 +27,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private Button ans3;
     private Button ans4;
     private TextView question;
-    private int count;
+    private int count = 5;
     private String str;
     private boolean hold = true;
 
@@ -81,12 +81,9 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     private void init() {
         Bundle bundle = getIntent().getExtras();
-        count = Integer.valueOf(bundle.getString("questCounter"));
         changeButton(bundle);
-        if(count == 1)
-            next.setText("SUBMIT");
         if(bundle != null){
-            question.setText(bundle.getString("sentence"));
+            question.setText("1-) " + bundle.getString("sentence"));
             ans1.setText(bundle.getString("msg1"));
             ans2.setText(bundle.getString("msg3"));
             ans3.setText(bundle.getString("msg4"));
@@ -123,9 +120,13 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
             }
         }
-        else if(view == back)
+        else{
+            Toast.makeText(this, "You already choose", Toast.LENGTH_SHORT).show();
+        }
+        if(view == back)
             onBackPressed();
-        else if(view == next){
+        if(view == next){
+            hold = true;
             if(count == 1){
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
@@ -135,7 +136,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
                 userControl();
         }
 
-        else if(view == task){
+        if(view == task){
             Intent intentOptions = new Intent( this , OptionsActivity.class );
             startActivity(intentOptions);
         }
@@ -155,13 +156,9 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             Intent intentProfile = new Intent( this , ProfileActivity.class );
             startActivity(intentProfile);
         }
-        else{
-            Toast.makeText(this, "You already choose", Toast.LENGTH_SHORT).show();
-        }
     }
     private void userControl() {
         AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
-                .addBodyParameter("selection" , "1")
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsString(new StringRequestListener() {
@@ -183,11 +180,14 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         count--;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
-            bundle.putString("questCounter", String.valueOf(count));
-            Intent intentPlay = new Intent(this, PracticeActivity.class);
-            intentPlay.putExtras(bundle);
-            startActivity(intentPlay);
-            finish();
+            question.setText((5 - count + 1) + "-) " + bundle.getString("sentence"));
+            ans1.setText(bundle.getString("msg1"));
+            ans2.setText(bundle.getString("msg3"));
+            ans3.setText(bundle.getString("msg4"));
+            ans4.setText(bundle.getString("msg5"));
+            if(count == 1)
+                next.setText("SUBMIT");
+            changeButton(bundle);
         }
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
