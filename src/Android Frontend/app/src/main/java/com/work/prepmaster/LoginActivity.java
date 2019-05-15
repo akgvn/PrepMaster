@@ -75,7 +75,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         else if(responsePost.getPost() == 3)
             Toast.makeText(this, " Long input ", Toast.LENGTH_SHORT).show();
         else if(responsePost.getPost() == 4)
-            Toast.makeText(this, " Empty argumant ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, " Empty argument ", Toast.LENGTH_SHORT).show();
         else if(responsePost.getPost() == 5)
             Toast.makeText(this, " Invalid variable ", Toast.LENGTH_SHORT).show();
         else{
