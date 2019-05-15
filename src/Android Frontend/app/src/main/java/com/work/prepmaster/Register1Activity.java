@@ -40,7 +40,6 @@ public class Register1Activity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View v) {
-        Intent intentLogIn = new Intent(this, MainActivity.class);
         String pass = password.getText().toString();
         String rePass = rePassword.getText().toString();
         if(v == register){
@@ -51,7 +50,7 @@ public class Register1Activity extends AppCompatActivity implements View.OnClick
                 Toast.makeText(this, "Passwords are different", Toast.LENGTH_SHORT).show();
         }
         if(v == logIn){
-            startActivity(intentLogIn);
+            onBackPressed();
         }
     }
     private void post() {
