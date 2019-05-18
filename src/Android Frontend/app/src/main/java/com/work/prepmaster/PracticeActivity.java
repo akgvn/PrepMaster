@@ -127,7 +127,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             onBackPressed();
         if(view == next){
             hold = true;
-            if(count == 1){
+            if(count < 2){
                 Intent intent = new Intent(this, MainActivity.class);
                 startActivity(intent);
                 finish();
