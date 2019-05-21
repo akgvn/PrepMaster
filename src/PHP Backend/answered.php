@@ -6,7 +6,7 @@ require_once "supermemo.php";
 // POST request will come
 
 // User answered a question on the app.
-if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"])) {
+if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"])) {
     $user_id = $_POST["user_id"]; // the user logged in right now
     $word_id = $_POST["word_id"]; // id of the word user answered
     $grade = $_POST["grade"]; // Out of five
@@ -35,9 +35,10 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
 
         $efactor = 2.5;
         $repeat = 0;
+        $intrvl = 1;
 
     } else if (count($rows) == 1) {
-        // TODO Prepare the variables for INSERTing to DB.
+        // Prepare the variables for INSERTing to DB.
 
         try {
             // Update the scheduled row as asked.
@@ -52,10 +53,13 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
         $efactor = easiness($rows["efactor"], $grade);
         $intrvl = interval($rows["repeat_time"], $efactor, $rows["old_interval"]); // Number of days from now.
 
-        // TODO find the date to schedule here.
     } else {
         // TODO Shouldn't happen. Add error for this.
     }
+
+    $scheduled_date = date("Y-m-d", strtotime("+" . $intrvl . " days"));
+
+    echo $scheduled_date; // FIXME for testing
 
     try {
         // Schedule the word.
@@ -64,7 +68,7 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
 
         $stmt->bindparam(":uid", $user_id);
         $stmt->bindparam(":wid", $word_id);
-        $stmt->bindparam(":dte", $scheduled_date); // TODO Date stuff
+        $stmt->bindparam(":dte", $scheduled_date);
         $stmt->bindparam(":ef", $efactor);
         $stmt->bindparam(":rt", $rows["repeat_time"] + 1);
         $stmt->bindparam(":oi", $intrvl);
