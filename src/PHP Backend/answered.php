@@ -3,11 +3,6 @@
 require_once "connect.php";
 require_once "supermemo.php";
 
-// POST request will come
-
-if (!(isset($_POST["answered"]) || isset($_POST["remind"]))) {
-    echo "Invalid request!";
-}
 
 // User answered a question on the app.
 if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"])) {
@@ -55,25 +50,30 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
 
         $efactor = easiness($rows["efactor"], $grade);
         $intrvl = interval($rows["repeat_time"], $efactor, $rows["old_interval"]); // Number of days from now.
-        
+
         // TODO find the date to schedule here.
     } else {
         // TODO Shouldn't happen. Add error for this.
     }
 
-    // TODO Do the INSERTION
+    try {
+        // Schedule the word.
+        $stmt = $db->prepare("INSERT INTO schedule(word_id, user_id, date, efactor, repeat_time, old_interval)
+        VALUES(:wid, :uid, :dte, :ef, :rt, :oi)");
 
-    $stmt = $db->prepare("INSERT INTO schedule(word_id, user_id, date, efactor, repeat_time, old_interval) 
-    VALUES(:wid, :uid, :dte, :ef, :rt, :oi)");
-    
+        $stmt->bindparam(":uid", $user_id);
+        $stmt->bindparam(":wid", $word_id);
+        $stmt->bindparam(":dte", $scheduled_date); // TODO Date stuff
+        $stmt->bindparam(":ef", $efactor);
+        $stmt->bindparam(":rt", $rows["repeat_time"] + 1);
+        $stmt->bindparam(":oi", $intrvl);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+        exit; // FIXME Send error code?
+    }
 
 } else {
     echo "Invalid request!";
-}
-
-// App requests questions to ask to the user.
-if (isset($_POST["remind"]) && isset($_POST["user_id"])) {
-    // TODO
-} else {
-    echo "Invalid request!"; // FIXME Send error code with JSON?
 }
