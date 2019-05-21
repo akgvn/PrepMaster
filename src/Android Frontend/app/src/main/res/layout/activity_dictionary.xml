@@ -4,8 +4,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/ana_ekran_gradient"
+    android:background="#dddddd"
     tools:context=".Dictionary">
+<!-- @drawable/ana_ekran_gradient -->
 
     <EditText
         android:id="@+id/kullanici_adi_et_id"
@@ -16,7 +17,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="38dp"
         android:layout_marginLeft="38dp"
-        android:layout_marginTop="43dp"
+        android:layout_marginTop="33dp"
         android:ems="10"
         android:gravity="center"
         android:hint="The Word"
@@ -40,7 +41,8 @@
         android:id="@+id/listView1"
         android:layout_width="match_parent"
         android:layout_height="521dp"
-        android:layout_marginTop="200dp"
+        android:layout_below="@+id/kullanici_adi_et_id"
+        android:layout_marginTop="30dp"
         android:backgroundTint="@android:color/white"
         android:gravity="center"
         android:text="Kullanıcı Bilgileri"

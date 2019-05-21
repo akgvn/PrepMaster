@@ -32,8 +32,6 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_statistic);
-        back = findViewById(R.id.buttonStatisticBack);
-        back.setOnClickListener(this);
 
         task = findViewById(R.id.imgviewTask);
         task.setOnClickListener(this);
