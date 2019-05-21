@@ -133,7 +133,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
                 finish();
             }
             else
-                userControl();
+                getQuest();
         }
 
         if(view == task){
@@ -157,7 +157,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             startActivity(intentProfile);
         }
     }
-    private void userControl() {
+    private void getQuest() {
         AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
                 .setPriority(Priority.MEDIUM)
                 .build()

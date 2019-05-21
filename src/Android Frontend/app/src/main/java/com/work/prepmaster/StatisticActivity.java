@@ -3,9 +3,19 @@ package com.work.prepmaster;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.google.gson.Gson;
 
 public class StatisticActivity extends AppCompatActivity implements View.OnClickListener {
     private Button back;
@@ -15,6 +25,8 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     private ImageView home;
     private ImageView highScore;
     private ImageView profile;
+    private String[][] arr;
+    private ListView list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +50,8 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         profile = findViewById(R.id.imgviewProfile);
         profile.setOnClickListener(this);
 
+        list = findViewById(R.id.statisticList);
+        userControl();
     }
 
     @Override
@@ -64,6 +78,40 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         if(view == profile){
             Intent intentProfile = new Intent( this , ProfileActivity.class );
             startActivity(intentProfile);
+        }
+    }
+    private void userControl() {
+        AndroidNetworking.post("http://bilimtadinda.com/cankahard/high_score.php")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String  response) {
+                        Log.i("StatisticActivity",response);
+                        request(response);
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        Log.e("StatisticActivity",error.getMessage());
+                    }
+                });
+    }
+    private void request(String response) {
+        Gson gson = new Gson();
+        ResponseScore responseScore = gson.fromJson(response,ResponseScore.class);
+        String arrayOne[] = new String[20];
+        if(responseScore.getScore() != null) {
+            arr = responseScore.getScore();
+            for(int i = 0; i< 20;i++){
+                arrayOne[i] = arr[0][i] + "   :   " + arr[1][i];
+            }
+            ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>
+                    (this, R.layout.item_dark_text, arrayOne);
+            list.setAdapter(arrayAdapter);
+        }
+        else{
+            Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }
