@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <dimen name="TextSize1">20dp</dimen>
-    <dimen name="button_margin">50dp</dimen>
-    <dimen name="tv_text_size">25sp</dimen>
-    <dimen name="image_margin">50dp</dimen>
-</resources>
