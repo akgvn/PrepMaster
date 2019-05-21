@@ -3,6 +3,7 @@
 require_once "connect.php";
 require_once "supermemo.php";
 
+// POST request will come
 
 // User answered a question on the app.
 if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"])) {
@@ -77,3 +78,5 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
 } else {
     echo "Invalid request!";
 }
+
+?>
