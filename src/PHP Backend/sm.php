@@ -1,12 +1,14 @@
 <?php
 
 /*
-qid
-word_id
-user_id
-date
-efactor
-asked
+    qid
+    word_id
+    user_id
+    date
+    efactor
+    asked
+    repeat_time
+    old_interval 
  */
 
 require_once "connect.php";
@@ -24,6 +26,10 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
     $grade = $_POST["grade"]; // Out of five
 
     print_r($_POST); // FIXME delete this later
+
+    // Schedule reminding time!
+
+        
 
 } else {
     echo "Invalid request!";
