@@ -49,7 +49,7 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
 
         profile = findViewById(R.id.imgviewProfile);
         profile.setOnClickListener(this);
-
+// Vural
         init();
     }
     private void init() {
