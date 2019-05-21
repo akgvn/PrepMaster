@@ -10,6 +10,7 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
     $user_id = $_POST["user_id"]; // the user logged in right now
     $word_id = $_POST["word_id"]; // id of the word user answered
     $grade = $_POST["grade"]; // Out of five
+    $asked = 0;
 
     print_r($_POST); // FIXME delete this later
 
@@ -17,10 +18,10 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
 
     try {
         // Get all rows w/ this user & word, which hasn't been asked yet.
-        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_id=:uid AND word_id=wid AND asked=:ask");
+        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_id=:uid AND word_id=:wid AND asked=:ask");
         $stmt->bindparam(":uid", $user_id);
         $stmt->bindparam(":wid", $word_id);
-        $stmt->bindparam(":ask", 0);
+        $stmt->bindparam(":ask", $asked);
 
         $stmt->execute();
     } catch (PDOException $e) {
@@ -36,6 +37,7 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
         $efactor = 2.5;
         $repeat = 0;
         $intrvl = 1;
+        $repeats = 0;
 
     } else if (count($rows) == 1) {
         // Prepare the variables for INSERTing to DB.
@@ -52,6 +54,7 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
 
         $efactor = easiness($rows["efactor"], $grade);
         $intrvl = interval($rows["repeat_time"], $efactor, $rows["old_interval"]); // Number of days from now.
+        $repeats = $rows["repeat_time"] + 1;
 
     } else {
         // TODO Shouldn't happen. Add error for this.
@@ -70,7 +73,7 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
         $stmt->bindparam(":wid", $word_id);
         $stmt->bindparam(":dte", $scheduled_date);
         $stmt->bindparam(":ef", $efactor);
-        $stmt->bindparam(":rt", $rows["repeat_time"] + 1);
+        $stmt->bindparam(":rt", $repeats);
         $stmt->bindparam(":oi", $intrvl);
 
         $stmt->execute();
