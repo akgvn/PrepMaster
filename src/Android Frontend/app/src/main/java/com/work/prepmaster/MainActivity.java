@@ -23,6 +23,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView home;
     private ImageView highScore;
     private ImageView profile;
+    private String userName;
+    private String abc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         play       = findViewById(R.id.buttonPlay);
         options    = findViewById(R.id.buttonOptions);
 
+
+        Bundle bundleUser = getIntent().getExtras();
+        userName = bundleUser.getString("userName");
 
         play.setOnClickListener(this);
         options.setOnClickListener(this);
@@ -53,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View view) {
         if (view == play){
-            userControl();
+            getQuest();
         }
         if (view == options){
             Intent intentOptions = new Intent(this, OptionsActivity.class);
@@ -80,9 +85,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intentProfile);
         }
     }
-    private void userControl() {
+    private void getQuest() {
             AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
-                    .addBodyParameter("selection" , "1")
                     .setPriority(Priority.MEDIUM)
                     .build()
                     .getAsString(new StringRequestListener() {
@@ -103,6 +107,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bundle;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
+            bundle.putString("userName", userName);
             Intent intentPlay = new Intent(this, PracticeActivity.class);
             if(bundle != null) {
                 intentPlay.putExtras(bundle);

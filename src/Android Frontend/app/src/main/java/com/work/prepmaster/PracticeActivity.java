@@ -27,15 +27,19 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private Button ans3;
     private Button ans4;
     private TextView question;
-    private int count = 5;
-    private String str;
-    private boolean hold = true;
 
     private ImageView task;
     private ImageView dict;
     private ImageView home;
     private ImageView highScore;
     private ImageView profile;
+
+    private String userName;
+    private String str;
+    private int count = 5;
+    private int trueCount = 0;
+    private int skipCount = 0;
+    private boolean hold = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +86,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private void init() {
         Bundle bundle = getIntent().getExtras();
         changeButton(bundle);
+        userName = bundle.getString("userName");
         if(bundle != null){
             question.setText("1-) " + bundle.getString("sentence"));
             ans1.setText(bundle.getString("msg1"));
@@ -93,50 +98,23 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        if(hold){
-            hold = false;
-            if(view == ans1){
-                if(ans1.getText().toString().equals(str))
-                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-            }
-            else if(view == ans2){
-                if(ans2.getText().toString().equals(str))
-                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-            }
-            else if(view == ans3){
-                if(ans3.getText().toString().equals(str))
-                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-            }
-            else if(view == ans4){
-                if(ans4.getText().toString().equals(str))
-                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                else
-                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
-            }
-        }
-        else{
-            Toast.makeText(this, "You already choose", Toast.LENGTH_SHORT).show();
-        }
         if(view == back)
             onBackPressed();
-        if(view == next){
+        else if(view == next){
+            if(hold)
+                skipCount ++;
             hold = true;
             if(count < 2){
+                sendResult();
                 Intent intent = new Intent(this, MainActivity.class);
+                intent.putExtra("userName", userName);
                 startActivity(intent);
                 finish();
             }
             else
                 getQuest();
         }
-
-        if(view == task){
+        else if(view == task){
             Intent intentOptions = new Intent( this , OptionsActivity.class );
             startActivity(intentOptions);
         }
@@ -155,6 +133,44 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         else if(view == profile){
             Intent intentProfile = new Intent( this , ProfileActivity.class );
             startActivity(intentProfile);
+        }
+        else if(hold){
+            hold = false;
+            if(view == ans1){
+                if(ans1.getText().toString().equals(str)){
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                    trueCount ++;
+                }
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
+            else if(view == ans2){
+                if(ans2.getText().toString().equals(str)){
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                    trueCount ++;
+                }
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
+            else if(view == ans3){
+                if(ans3.getText().toString().equals(str)){
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                    trueCount ++;
+                }
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
+            else if(view == ans4){
+                if(ans4.getText().toString().equals(str)){
+                    Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
+                    trueCount ++;
+                }
+                else
+                    Toast.makeText(this, "! Wrong !", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else{
+            Toast.makeText(this, "You already choose", Toast.LENGTH_SHORT).show();
         }
     }
     private void getQuest() {
@@ -194,6 +210,26 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             finish();
         }
     }
+    private void sendResult() {
+        AndroidNetworking.post("http://bilimtadinda.com/cankahard/update_high_score.php")
+                .addBodyParameter("user_name" , userName)
+                .addBodyParameter("user_score" , String.valueOf(trueCount - ((5.00 - trueCount - skipCount)/3)))
+                .addBodyParameter("user_true" , String.valueOf(trueCount))
+                .addBodyParameter("user_false" , String.valueOf(5 - trueCount - skipCount))
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String  response) {
+                        Log.i("PracticeActivity",response);
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        Log.e("PracticeActivity",error.getMessage());
+                    }
+                });
+    }
+
     private void changeButton(Bundle bundle){
         Random rand = new Random();
         int rnd = rand.nextInt(4) + 1;

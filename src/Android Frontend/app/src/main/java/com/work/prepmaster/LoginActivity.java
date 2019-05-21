@@ -15,7 +15,7 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.gson.Gson;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener  {
     private Button register;
     private Button logIn;
     private EditText userName;
@@ -67,6 +67,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ResponsePost responsePost = gson.fromJson(response,ResponsePost.class);
         Intent intentStart = new Intent(this, MainActivity.class);
         if(responsePost.getPost() == 1) {
+            intentStart.putExtra("userName", userName.getText().toString());
             startActivity(intentStart);
             Toast.makeText(this, "! Welcome !", Toast.LENGTH_SHORT).show();
         }

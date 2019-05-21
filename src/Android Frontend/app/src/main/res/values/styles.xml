@@ -13,5 +13,15 @@
         <item name="android:textSize">20dp</item>
 
     </style>
+    <style name="SpecialActionBar"
+        parent="@style/Theme.AppCompat.Light.DarkActionBar">
+        <item name="android:actionBarStyle">@style/SpecialActionBarStyle</item>
+        <item name="actionBarStyle">@style/SpecialActionBarStyle</item>
+    </style>
+    <style name="SpecialActionBarStyle"
+        parent="@style/Widget.AppCompat.Light.ActionBar.Solid.Inverse">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="background">@color/colorPrimaryDark</item>
+    </style>
 
 </resources>
