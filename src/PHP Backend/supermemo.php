@@ -61,6 +61,7 @@ function easiness($old_easiness, $response_quality)
 
 function interval($n, $easiness, $old_interv)
 {
+    // Returns number of days for scheduling.
     if ($n == 1) {
         return 1;
     } elseif ($n == 2) {

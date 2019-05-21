@@ -1,16 +1,5 @@
 <?php
 
-/*
-qid
-word_id
-user_id
-date
-efactor
-asked
-repeat_time
-old_interval
- */
-
 require_once "connect.php";
 require_once "supermemo.php";
 
@@ -20,6 +9,7 @@ if (!(isset($_POST["answered"]) || isset($_POST["remind"]))) {
     echo "Invalid request!";
 }
 
+// User answered a question on the app.
 if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"])) {
     $user_id = $_POST["user_id"]; // the user logged in right now
     $word_id = $_POST["word_id"]; // id of the word user answered
@@ -44,15 +34,21 @@ if (isset($_POST["answered"]) && isset($_POST["user_id"]) && isset($_POST["word_
 
     if (!(count($rows) > 0)) {
         // This word wasn't scheduled before.
-        // TODO
+        
+        $efactor = 2.5;
+        $repeat = 0;
+
+    } else {
+        // TODO Prepare the variables for INSERTing to DB.
     }
 
 } else {
     echo "Invalid request!";
 }
 
+// App requests questions to ask to the user.
 if (isset($_POST["remind"]) && isset($_POST["user_id"])) {
     // TODO
 } else {
-    echo "Invalid request!";
+    echo "Invalid request!"; // FIXME Send error code with JSON?
 }
