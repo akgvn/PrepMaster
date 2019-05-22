@@ -42,19 +42,21 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
     } else if (count($rows) == 1) {
         // Prepare the variables for INSERTing to DB.
 
+        $row = $rows; // Copy the question data.
+
         try {
             // Update the scheduled row as asked.
             $stmt = $db->prepare("UPDATE schedule SET asked=1 WHERE qid=:qi");
-            $stmt->bindparam(":qi", $rows["qid"]);
+            $stmt->bindparam(":qi", $row["qid"]);
             $stmt->execute();
         } catch (PDOException $e) {
             echo $e->getMessage();
             exit; // FIXME Send error code?
         }
 
-        $efactor = easiness($rows["efactor"], $grade);
-        $intrvl = interval($rows["repeat_time"], $efactor, $rows["old_interval"]); // Number of days from now.
-        $repeats = $rows["repeat_time"] + 1;
+        $repeats = $row["repeat_time"] + 1;
+        $efactor = easiness($row["efactor"], $grade);
+        $intrvl = interval($repeats, $efactor, $row["old_interval"]); // Number of days from now.
 
     } else {
         // TODO Shouldn't happen. Add error for this.
