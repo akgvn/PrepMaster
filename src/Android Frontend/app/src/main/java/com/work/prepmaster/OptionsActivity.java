@@ -69,6 +69,7 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
             SharedPreferences.Editor editor = sharedPref.edit();
             editor.putString("userName", "");
             editor.commit();
+            finishAffinity();
             System.exit(0);
         }
     }

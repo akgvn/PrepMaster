@@ -40,9 +40,11 @@
     <ListView
         android:id="@+id/listView1"
         android:layout_width="match_parent"
-        android:layout_height="521dp"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/relativeLayoutDict"
         android:layout_below="@+id/kullanici_adi_et_id"
         android:layout_marginTop="30dp"
+        android:layout_marginBottom="0dp"
         android:backgroundTint="@android:color/white"
         android:gravity="center"
         android:text="Kullanıcı Bilgileri"
@@ -51,6 +53,7 @@
         android:textStyle="bold" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayoutDict"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:layout_alignParentBottom="true"
