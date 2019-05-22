@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
@@ -23,8 +22,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView home;
     private ImageView highScore;
     private ImageView profile;
-    private String userName;
-    private String abc;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +29,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         play       = findViewById(R.id.buttonPlay);
         options    = findViewById(R.id.buttonOptions);
-
-
-        Bundle bundleUser = getIntent().getExtras();
-        userName = bundleUser.getString("userName");
 
         play.setOnClickListener(this);
         options.setOnClickListener(this);
@@ -107,7 +100,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Bundle bundle;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
-            bundle.putString("userName", userName);
             Intent intentPlay = new Intent(this, PracticeActivity.class);
             if(bundle != null) {
                 intentPlay.putExtras(bundle);

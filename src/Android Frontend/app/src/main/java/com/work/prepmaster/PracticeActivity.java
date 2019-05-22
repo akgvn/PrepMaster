@@ -1,6 +1,8 @@
 package com.work.prepmaster;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -86,7 +88,10 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private void init() {
         Bundle bundle = getIntent().getExtras();
         changeButton(bundle);
-        userName = bundle.getString("userName");
+
+        SharedPreferences sharedPref = this.getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
+        userName = sharedPref.getString("userName", "");
+
         if(bundle != null){
             question.setText("1-) " + bundle.getString("sentence"));
             ans1.setText(bundle.getString("msg1"));
@@ -196,6 +201,7 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         count--;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
+            changeButton(bundle);
             question.setText((5 - count + 1) + "-) " + bundle.getString("sentence"));
             ans1.setText(bundle.getString("msg1"));
             ans2.setText(bundle.getString("msg3"));
@@ -203,7 +209,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             ans4.setText(bundle.getString("msg5"));
             if(count == 1)
                 next.setText("SUBMIT");
-            changeButton(bundle);
         }
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();

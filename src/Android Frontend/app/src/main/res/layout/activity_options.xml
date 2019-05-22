@@ -123,6 +123,7 @@ dropdown.setAdapter(adapter2);
         app:layout_constraintTop_toTopOf="@+id/textView7"></Spinner>
 
     <RelativeLayout
+        android:id="@+id/relativeLayout3"
         android:layout_width="match_parent"
         android:layout_height="66dp"
         android:layout_alignParentBottom="true"
@@ -163,8 +164,7 @@ dropdown.setAdapter(adapter2);
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/imgviewTask"
-            android:src="@mipmap/magnifying_glass_finder"
-            />
+            android:src="@mipmap/magnifying_glass_finder" />
 
         <ImageView
             android:id="@+id/imgviewHome"
@@ -173,8 +173,7 @@ dropdown.setAdapter(adapter2);
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/imgviewSozluk"
-            android:src="@mipmap/hom_eico_nsilhouette"
-            />
+            android:src="@mipmap/hom_eico_nsilhouette" />
 
         <ImageView
             android:id="@+id/imgviewHighScore"
@@ -183,14 +182,28 @@ dropdown.setAdapter(adapter2);
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             android:layout_toRightOf="@id/imgviewHome"
-            android:src="@mipmap/trophy"
-            />
-
+            android:src="@mipmap/trophy" />
 
 
     </RelativeLayout>
 
-
+    <Button
+        android:id="@+id/buttonQuit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Quit"
+        android:background="#8B1313"
+        android:textColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>

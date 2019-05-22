@@ -112,6 +112,7 @@
     <ImageView
         android:id="@+id/buttonPlay"
         android:layout_width="153dp"
+        android:visibility="visible"
         android:layout_height="133dp"
         android:layout_marginTop="144dp"
         android:src="@mipmap/play_button1"

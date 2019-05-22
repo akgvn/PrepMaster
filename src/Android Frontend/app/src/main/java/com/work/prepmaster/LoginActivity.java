@@ -1,6 +1,8 @@
 package com.work.prepmaster;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +36,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         userName = findViewById(R.id.user_name);
 
         password = findViewById(R.id.password);
+
+        SharedPreferences sharedPref = this.getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
+        if(sharedPref.getString("userName", "").length() > 3){
+            Intent intentStart = new Intent(this, MainActivity.class);
+            startActivity(intentStart);
+            Toast.makeText(this, " Welcome " + sharedPref.getString("userName", ""), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
@@ -67,9 +76,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         ResponsePost responsePost = gson.fromJson(response,ResponsePost.class);
         Intent intentStart = new Intent(this, MainActivity.class);
         if(responsePost.getPost() == 1) {
-            intentStart.putExtra("userName", userName.getText().toString());
+
+            SharedPreferences sharedPref = this.getSharedPreferences("sharedPref",Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            editor.putString("userName", userName.getText().toString());
+            editor.commit();
             startActivity(intentStart);
-            Toast.makeText(this, "! Welcome !", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, " Welcome " + userName.getText().toString(), Toast.LENGTH_SHORT).show();
         }
         else if(responsePost.getPost() == 2)
             Toast.makeText(this, " Invalid logIn ", Toast.LENGTH_SHORT).show();
