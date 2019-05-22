@@ -13,9 +13,10 @@ if (isset($_POST["user_id"])) {
 
     try {
         // Get all scheduled questions for this user, which hasn't been asked yet.
-        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_id=:uid AND asked=:ask");
+        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_id=:uid AND asked=:ask AND date=:dte");
         $stmt->bindparam(":uid", $user_id);
         $stmt->bindparam(":ask", $asked);
+        $stmt->bindparam(":dte", date("Y-m-d"));
 
         $stmt->execute();
     } catch (PDOException $e) {
@@ -24,6 +25,11 @@ if (isset($_POST["user_id"])) {
     }
 
     // TODO Check for questions and return them!
+
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // TODO send null if no questions
+    // TODO otherwise send first question
 
 } else {
     echo "Invalid request!"; // FIXME Send error code with JSON?
