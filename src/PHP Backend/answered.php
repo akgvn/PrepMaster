@@ -19,13 +19,13 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
 
     try {
         // Get all rows w/ this user & word, which hasn't been asked yet.
-        $stmt = $db->prepare("SELECT qid FROM schedule WHERE user_nick_name=:uid AND word_id=:wid AND asked=:ask LIMIT 1");
+        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_nick_name=:uid AND word_id=:wid AND asked=:ask LIMIT 1");
         $stmt->bindparam(":uid", $user_nick_name);
         $stmt->bindparam(":wid", $word_id);
         $stmt->bindparam(":ask", $asked);
 
         $stmt->execute();
-        //
+        
         // echo "select try";
     } catch (PDOException $e) {
         echo $e->getMessage();
@@ -37,8 +37,6 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
     // echo "<br> count($rows) =" . count($rows);
 
     // print_r($rows);
-
-    $qid = $rows[0]["qid"];
 
     if (count($rows) == 0) {
         // This word wasn't scheduled before.
@@ -55,7 +53,9 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
 
         //echo "<br>qid = " . $qid;
 
-        $row = $rows; // Copy the question data.
+        $row = $rows[0]; // Copy the question data.
+
+        $qid = $row["qid"];
 
         try {
             // Update the scheduled row as asked.

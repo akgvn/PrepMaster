@@ -15,7 +15,7 @@ User id:
 Grade:
 <input type="text" name="grade" />
 
-<button type="submit" value="submit"></button>
+<button type="submit" value="submit">Send</button>
 
 </form>
 

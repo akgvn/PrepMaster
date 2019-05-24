@@ -1,14 +1,14 @@
-<?php
+<!DOCTYPE html>
 
-	require_once 'connect.php';
-	if(!isset($_GET['sayfa'])){
-		$_GET['sayfa']='index';
-	}
-	Switch ($_GET['sayfa']){
-		case 'insert':
-		require_once 'insert.php';
-		break;
+<html>
+<body>
 
-	}
-?>
+Tests:<br>
 
+<a href='test_ans.php'>Test Answered</a>
+<br>
+<a href='test_rem.php'>Test Remind</a>
+
+
+</body>
+</html>
