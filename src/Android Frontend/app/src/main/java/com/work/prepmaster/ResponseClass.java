@@ -10,13 +10,15 @@ public class ResponseClass {
     private String msg4;
     private String msg5;
     private String sentence;
-    public ResponseClass(String msg1, String msg2, String msg3, String msg4, String msg5, String sentence) {
+    private String id;
+    public ResponseClass(String msg1, String msg2, String msg3, String msg4, String msg5, String sentence, String id) {
         this.msg1 = msg1;
         this.msg2 = msg2;
         this.msg3 = msg3;
         this.msg4 = msg4;
         this.msg5 = msg5;
         this.sentence = sentence;
+        this.id = id;
     }
     public Bundle getReq() {
         Bundle bundle = new Bundle();
@@ -26,6 +28,7 @@ public class ResponseClass {
         bundle.putString("msg4", msg4);
         bundle.putString("msg5", msg5);
         bundle.putString("sentence", sentence);
+        bundle.putString("id", id);
         return bundle;
     }
 }

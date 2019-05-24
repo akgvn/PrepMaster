@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.androidnetworking.AndroidNetworking;
@@ -16,12 +17,13 @@ import com.google.gson.Gson;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ImageView options , play;
-
     private ImageView task;
     private ImageView dict;
     private ImageView home;
     private ImageView highScore;
     private ImageView profile;
+
+    private Button reminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +49,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         profile = findViewById(R.id.imgviewProfile);
         profile.setOnClickListener(this);
+
+        reminder = findViewById(R.id.buttonRemind);
+        reminder.setOnClickListener(this);
     }
     @Override
     public void onClick(View view) {
@@ -75,6 +80,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view == profile){
             Intent intentProfile = new Intent( this , ProfileActivity.class );
+            startActivity(intentProfile);
+        }
+        if(view == reminder){
+            Intent intentProfile = new Intent( this , ReminderActivity.class );
             startActivity(intentProfile);
         }
     }

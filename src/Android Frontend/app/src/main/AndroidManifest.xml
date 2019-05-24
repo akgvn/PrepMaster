@@ -11,6 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/SpecialActionBar">
+        <activity android:name=".ReminderActivity"></activity>
         <activity android:name=".Dictionary" />
         <activity android:name=".StatisticActivity" />
         <activity android:name=".Register2Activity" />
@@ -23,6 +24,7 @@
         <activity android:name=".LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

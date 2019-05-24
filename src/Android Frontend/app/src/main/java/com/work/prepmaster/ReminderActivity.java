@@ -20,7 +20,7 @@ import com.google.gson.Gson;
 
 import java.util.Random;
 
-public class PracticeActivity extends AppCompatActivity implements View.OnClickListener {
+public class ReminderActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button back;
     private Button next;
@@ -40,15 +40,13 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
     private String str;
     private String wId;
     private String grade = "1";
-    private int count = 5;
-    private int trueCount = 0;
-    private int skipCount = 0;
     private boolean hold = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_practice);
+
         back = findViewById(R.id.buttonPracticeBack);
         back.setOnClickListener(this);
 
@@ -87,41 +85,21 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         init();
     }
 
-    private void init() {
-        Bundle bundle = getIntent().getExtras();
-        changeButton(bundle);
-
+    private void init(){
         SharedPreferences sharedPref = this.getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
         userName = sharedPref.getString("userName", "");
-
-        if(bundle != null){
-            question.setText("1-) " + bundle.getString("sentence"));
-            ans1.setText(bundle.getString("msg1"));
-            ans2.setText(bundle.getString("msg3"));
-            ans3.setText(bundle.getString("msg4"));
-            ans4.setText(bundle.getString("msg5"));
-        }
+        getQuest();
     }
 
     @Override
     public void onClick(View view) {
-        grade = "1";
         if(view == back)
             onBackPressed();
         else if(view == next){
             logAnswer();
-            if(hold)
-                skipCount ++;
             hold = true;
-            if(count < 2){
-                sendResult();
-                Intent intent = new Intent(this, MainActivity.class);
-                intent.putExtra("userName", userName);
-                startActivity(intent);
-                finish();
-            }
-            else
-                getQuest();
+            getQuest();
+            grade = "1";
         }
         else if(view == task){
             Intent intentOptions = new Intent( this , OptionsActivity.class );
@@ -148,7 +126,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             if(view == ans1){
                 if(ans1.getText().toString().equals(str)){
                     Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                    trueCount ++;
                     grade = "5";
                 }
                 else
@@ -157,7 +134,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             else if(view == ans2){
                 if(ans2.getText().toString().equals(str)){
                     Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                    trueCount ++;
                     grade = "5";
                 }
                 else
@@ -166,7 +142,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             else if(view == ans3){
                 if(ans3.getText().toString().equals(str)){
                     Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                    trueCount ++;
                     grade = "5";
                 }
                 else
@@ -175,7 +150,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             else if(view == ans4){
                 if(ans4.getText().toString().equals(str)){
                     Toast.makeText(this, "! Correct !", Toast.LENGTH_SHORT).show();
-                    trueCount ++;
                     grade = "5";
                 }
                 else
@@ -187,18 +161,19 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         }
     }
     private void getQuest() {
-        AndroidNetworking.post("http://bilimtadinda.com/cankahard/servis.php")
+        AndroidNetworking.post("http://bilimtadinda.com/cankahard/remind.php")
+                .addBodyParameter("user_nick_name" , userName)
                 .setPriority(Priority.MEDIUM)
                 .build()
                 .getAsString(new StringRequestListener() {
                     @Override
                     public void onResponse(String  response) {
-                        Log.i("PracticeActivity",response);
+                        Log.i("ReminderActivity",response);
                         request(response);
                     }
                     @Override
                     public void onError(ANError error) {
-                        Log.e("PracticeActivity",error.getMessage());
+                        Log.e("ReminderActivity",error.getMessage());
                     }
                 });
     }
@@ -206,42 +181,27 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
         Gson gson = new Gson();
         ResponseClass responseClass = gson.fromJson(response,ResponseClass.class);
         Bundle bundle;
-        count--;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
-            wId = bundle.getString("id");
-            changeButton(bundle);
-            question.setText((5 - count + 1) + "-) " + bundle.getString("sentence"));
-            ans1.setText(bundle.getString("msg1"));
-            ans2.setText(bundle.getString("msg3"));
-            ans3.setText(bundle.getString("msg4"));
-            ans4.setText(bundle.getString("msg5"));
-            if(count == 1)
-                next.setText("SUBMIT");
+            if(bundle.getString("sentence") == ""){
+                Toast.makeText(this, "All Finished", Toast.LENGTH_SHORT).show();
+                finish();
+            }
+            else {
+                wId = bundle.getString("id");
+                changeButton(bundle);
+                question.setText(bundle.getString("sentence"));
+                ans1.setText(bundle.getString("msg1"));
+                ans2.setText(bundle.getString("msg3"));
+                ans3.setText(bundle.getString("msg4"));
+                ans4.setText(bundle.getString("msg5"));
+            }
         }
+
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
             finish();
         }
-    }
-    private void sendResult() {
-        AndroidNetworking.post("http://bilimtadinda.com/cankahard/update_high_score.php")
-                .addBodyParameter("user_name" , userName)
-                .addBodyParameter("user_score" , String.valueOf(trueCount - ((5.00 - trueCount - skipCount)/3)))
-                .addBodyParameter("user_true" , String.valueOf(trueCount))
-                .addBodyParameter("user_false" , String.valueOf(5 - trueCount - skipCount))
-                .setPriority(Priority.MEDIUM)
-                .build()
-                .getAsString(new StringRequestListener() {
-                    @Override
-                    public void onResponse(String  response) {
-                        Log.i("PracticeActivity",response);
-                    }
-                    @Override
-                    public void onError(ANError error) {
-                        Log.e("PracticeActivity",error.getMessage());
-                    }
-                });
     }
 
     private void logAnswer() {
@@ -254,11 +214,11 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
                 .getAsString(new StringRequestListener() {
                     @Override
                     public void onResponse(String  response) {
-                        Log.i("PracticeActivity",response);
+                        Log.i("ReminderActivity",response);
                     }
                     @Override
                     public void onError(ANError error) {
-                        Log.e("PracticeActivity",error.getMessage());
+                        Log.e("ReminderActivity",error.getMessage());
                     }
                 });
     }
