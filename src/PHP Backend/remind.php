@@ -33,12 +33,11 @@ if (isset($_POST["user_id"])) {
     if (count($rows) == 0) {
         // TODO return null here
 
+    }
+    else {
         $wid = $rows["word_id"];
 
         retjson($wid, $db);
-    }
-    else {
-        // TODO return the data
     }
 
 } else {
