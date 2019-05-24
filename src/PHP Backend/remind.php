@@ -7,16 +7,16 @@ require_once "wordgetter.php";
 // POST request will come
 
 // App requests questions to ask to the user.
-if (isset($_POST["user_id"])) {
+if (isset($_POST["user_nick_name"])) {
 
-    $user_id = $_POST["user_id"];
+    $user_nick_name = $_POST["user_nick_name"];
     $asked = 0;
     $dte = date("Y-m-d");
 
     try {
         // Get all scheduled questions for this user, which hasn't been asked yet.
-        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_id=:uid AND asked=:ask AND date=:dte LIMIT 1");
-        $stmt->bindparam(":uid", $user_id);
+        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_nick_name=:uid AND asked=:ask AND date=:dte LIMIT 1");
+        $stmt->bindparam(":uid", $user_nick_name);
         $stmt->bindparam(":ask", $asked);
         $stmt->bindparam(":dte", $dte);
 
@@ -31,12 +31,9 @@ if (isset($_POST["user_id"])) {
     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if (count($rows) == 0) {
-        // TODO return null here
-
-    }
-    else {
+        // TODO return null;
+    } else {
         $wid = $rows["word_id"];
-
         retjson($wid, $db);
     }
 

@@ -6,8 +6,8 @@ require_once "supermemo.php";
 // POST request will come
 
 // User answered a question on the app.
-if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"])) {
-    $user_id = $_POST["user_id"]; // the user logged in right now
+if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST["grade"])) {
+    $user_nick_name = $_POST["user_nick_name"]; // the user logged in right now
     $word_id = $_POST["word_id"]; // id of the word user answered
     $grade = $_POST["grade"]; // Out of five
     $asked = 0;
@@ -18,8 +18,8 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
 
     try {
         // Get all rows w/ this user & word, which hasn't been asked yet.
-        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_id=:uid AND word_id=:wid AND asked=:ask");
-        $stmt->bindparam(":uid", $user_id);
+        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_nick_name=:uid AND word_id=:wid AND asked=:ask");
+        $stmt->bindparam(":uid", $user_nick_name);
         $stmt->bindparam(":wid", $word_id);
         $stmt->bindparam(":ask", $asked);
 
@@ -68,10 +68,10 @@ if (isset($_POST["user_id"]) && isset($_POST["word_id"]) && isset($_POST["grade"
 
     try {
         // Schedule the word.
-        $stmt = $db->prepare("INSERT INTO schedule(word_id, user_id, date, efactor, repeat_time, old_interval)
+        $stmt = $db->prepare("INSERT INTO schedule(word_id, user_nick_name, date, efactor, repeat_time, old_interval)
         VALUES(:wid, :uid, :dte, :ef, :rt, :oi)");
 
-        $stmt->bindparam(":uid", $user_id);
+        $stmt->bindparam(":uid", $user_nick_name);
         $stmt->bindparam(":wid", $word_id);
         $stmt->bindparam(":dte", $scheduled_date);
         $stmt->bindparam(":ef", $efactor);
