@@ -20,6 +20,8 @@ import com.google.gson.Gson;
 
 import java.util.Random;
 
+import static android.os.SystemClock.sleep;
+
 public class ReminderActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button back;
@@ -98,6 +100,7 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
         else if(view == next){
             logAnswer();
             hold = true;
+            sleep(5000);
             getQuest();
             grade = "1";
         }
@@ -183,7 +186,7 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
         Bundle bundle;
         if(responseClass.getReq() != null) {
             bundle = responseClass.getReq();
-            if(bundle.getString("sentence") == ""){
+            if(bundle.getString("sentence").equals("")){
                 Toast.makeText(this, "All Finished", Toast.LENGTH_SHORT).show();
                 finish();
             }
