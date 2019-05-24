@@ -10,7 +10,7 @@ Word id:
 <input type="text" name="word_id" />
 
 User id:
-<input type="text" name="user_id" />
+<input type="text" name="user_nick_name" />
 
 Grade:
 <input type="text" name="grade" />

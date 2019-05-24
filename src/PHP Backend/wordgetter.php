@@ -16,6 +16,7 @@ function retjson($x1, $db)
     $array[] = $words[0]['word'];
 
     $array[] = $words[0]['meaning'];
+
     $check = array();
     $check[] = $x1;
     $i = 0;
@@ -37,7 +38,9 @@ function retjson($x1, $db)
 
     } while ($i < 3);
     $array[0] = str_replace($array[1], ".....", $array[0]); //+++++
-    $metin .= '{"sentence":"' . $array[0] . '"' . ',"msg1":' . '"' . $array[1] . '"' . ',"msg2":' . '"' . $array[2] . '"' . ',"msg3":' . '"' . $array[3] . '"' . ',"msg4":' . '"' . $array[4] . '"' . ',"msg5":' . '"' . $array[5] . '"' . '}';
-//echo json_encode($array);
+    $metin .= '{"sentence":"' . $array[0] . '"' . ',"msg1":' . '"' . $array[1] . '"' . ',"msg2":' . '"' . $array[2] . '"' . ',"msg3":' . '"' . $array[3] . '"' . ',"msg4":' . '"' . $array[4] . '"' . ',"msg5":' . '"' . $array[5] . '"' . ' ,"id":' . '"' . $x1 . '"' . '}';
+    //echo json_encode( $array );
     echo $metin;
 }
+
+?>

@@ -15,6 +15,7 @@ $array[] = $words[0]['sentence'];
 $array[] = $words[0]['word'];
 
 $array[] = $words[0]['meaning'];
+//$array[] =$words[0]['id'];
 $check = array();
 $check[] = $x1;
 $i = 0;
@@ -36,27 +37,6 @@ do {
 
 } while ($i < 3);
 $array[0] = str_replace($array[1], ".....", $array[0]); //+++++
-$metin .= '{"sentence":"' . $array[0] . '"' . ',"msg1":' . '"' . $array[1] . '"' . ',"msg2":' . '"' . $array[2] . '"' . ',"msg3":' . '"' . $array[3] . '"' . ',"msg4":' . '"' . $array[4] . '"' . ',"msg5":' . '"' . $array[5] . '"' . '}';
-//echo json_encode($array);
+$metin .= '{"sentence":"' . $array[0] . '"' . ',"msg1":' . '"' . $array[1] . '"' . ',"msg2":' . '"' . $array[2] . '"' . ',"msg3":' . '"' . $array[3] . '"' . ',"msg4":' . '"' . $array[4] . '"' . ',"msg5":' . '"' . $array[5] . '"' . ' ,"id":' . '"' . $x1 . '"' . '}';
+//echo json_encode( $array );
 echo $metin;
-
-//print_r($array);
-
-/*
-function turkce($php){
-$php = str_replace("&#305;","ı",$php);
-$php = str_replace("&#304;","İ",$php);
-$php = str_replace("&#252;","ü",$php);
-$php = str_replace("&#220;","Ü",$php);
-$php = str_replace("&#287;","ğ",$php);
-$php = str_replace("&#286;","Ğ",$php);
-$php = str_replace("&#246;","ö",$php);
-$php = str_replace("&#214;","Ö",$php);
-$php = str_replace("&#351;","ş",$php);
-$php = str_replace("&#350;","Ş",$php);
-$php = str_replace("&#231;","ç",$php);
-$php = str_replace("&#199;","Ç",$php);
-return $php;
-}
-
- */

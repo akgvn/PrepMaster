@@ -30,8 +30,14 @@ if (isset($_POST["user_nick_name"])) {
 
     $rows = $stmt->fetch(PDO::FETCH_ASSOC);
 
+    //print_r($rows);
+
+    // echo "<br><br>";
+
     if (count($rows) == 0) {
         // TODO return null;
+        // $metin = '{"sentence":"' . " " . '"' . ',"msg1":' . '"' . " " . '"' . ',"msg2":' . '"' . " " . '"' . ',"msg3":' . '"' . " ". '"' . ',"msg4":' . '"' . " " . '"' . ',"msg5":' . '"' . " " . '"' . ' ,"id":' . '"' . " " . '"' . '}';
+        echo json_encode(array("sentence" => " ", "msg1" => " ", "msg2" => " ", "msg3" => " ", "msg4" => " ", "msg5" => " ", "id" => " "));
     } else {
         $wid = $rows["word_id"];
         retjson($wid, $db);
@@ -40,3 +46,5 @@ if (isset($_POST["user_nick_name"])) {
 } else {
     echo "Invalid request!"; // FIXME Send error code with JSON?
 }
+
+?>

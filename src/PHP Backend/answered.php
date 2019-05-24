@@ -12,24 +12,33 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
     $grade = $_POST["grade"]; // Out of five
     $asked = 0;
 
-    print_r($_POST); // FIXME delete this later
+    // print_r($_POST); // FIXME delete this later
+    // echo "print sonrası";
 
     // Schedule reminding time!
 
     try {
         // Get all rows w/ this user & word, which hasn't been asked yet.
-        $stmt = $db->prepare("SELECT * FROM schedule WHERE user_nick_name=:uid AND word_id=:wid AND asked=:ask");
+        $stmt = $db->prepare("SELECT qid FROM schedule WHERE user_nick_name=:uid AND word_id=:wid AND asked=:ask LIMIT 1");
         $stmt->bindparam(":uid", $user_nick_name);
         $stmt->bindparam(":wid", $word_id);
         $stmt->bindparam(":ask", $asked);
 
         $stmt->execute();
+        //
+        // echo "select try";
     } catch (PDOException $e) {
         echo $e->getMessage();
         exit; // FIXME Send error code?
     }
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // echo "<br> count($rows) =" . count($rows);
+
+    // print_r($rows);
+
+    $qid = $rows[0]["qid"];
 
     if (count($rows) == 0) {
         // This word wasn't scheduled before.
@@ -42,13 +51,21 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
     } else if (count($rows) == 1) {
         // Prepare the variables for INSERTing to DB.
 
+        //echo "else if girdi";
+
+        //echo "<br>qid = " . $qid;
+
         $row = $rows; // Copy the question data.
 
         try {
             // Update the scheduled row as asked.
-            $stmt = $db->prepare("UPDATE schedule SET asked=1 WHERE qid=:qi");
-            $stmt->bindparam(":qi", $row["qid"]);
+            $stmt = $db->prepare("UPDATE schedule SET asked=:askd WHERE qid=:qi");
+            $stmt->bindparam(":qi", $qid);
+            $askd = 1;
+            $stmt->bindparam(":askd", $askd);
             $stmt->execute();
+
+            //echo "update try";
         } catch (PDOException $e) {
             echo $e->getMessage();
             exit; // FIXME Send error code?
@@ -64,12 +81,12 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
 
     $scheduled_date = date("Y-m-d", strtotime("+" . $intrvl . " days"));
 
-    echo $scheduled_date; // FIXME for testing
+    // echo $scheduled_date; // FIXME for testing
 
     try {
         // Schedule the word.
         $stmt = $db->prepare("INSERT INTO schedule(word_id, user_nick_name, date, efactor, repeat_time, old_interval)
-        VALUES(:wid, :uid, :dte, :ef, :rt, :oi)");
+                             VALUES(:wid, :uid, :dte, :ef, :rt, :oi)");
 
         $stmt->bindparam(":uid", $user_nick_name);
         $stmt->bindparam(":wid", $word_id);
