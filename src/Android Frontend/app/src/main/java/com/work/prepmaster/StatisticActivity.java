@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -99,7 +97,6 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
     private void request(String response) {
         Gson gson = new Gson();
         ResponseScore responseScore = gson.fromJson(response,ResponseScore.class);
-        String arrayOne[] = new String[20];
         if(responseScore.getScore() != null) {
             arr = responseScore.getScore();
             lvModel = new ArrayList<>();
