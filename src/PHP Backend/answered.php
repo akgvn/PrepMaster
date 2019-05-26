@@ -12,9 +12,6 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
     $grade = $_POST["grade"]; // Out of five
     $asked = 0;
 
-    // print_r($_POST); // FIXME delete this later
-    // echo "print sonrası";
-
     // Schedule reminding time!
 
     try {
@@ -34,10 +31,6 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
 
     $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // echo "<br> count($rows) =" . count($rows);
-
-    // print_r($rows);
-
     if (count($rows) == 0) {
         // This word wasn't scheduled before.
 
@@ -48,10 +41,6 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
 
     } else if (count($rows) == 1) {
         // Prepare the variables for INSERTing to DB.
-
-        //echo "else if girdi";
-
-        //echo "<br>qid = " . $qid;
 
         $row = $rows[0]; // Copy the question data.
 
@@ -65,7 +54,6 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
             $stmt->bindparam(":askd", $askd);
             $stmt->execute();
 
-            //echo "update try";
         } catch (PDOException $e) {
             echo $e->getMessage();
             exit; // FIXME Send error code?
@@ -102,7 +90,7 @@ if (isset($_POST["user_nick_name"]) && isset($_POST["word_id"]) && isset($_POST[
     }
 
 } else {
-    echo "Invalid request!";
+    echo "Geçersiz İstek";
 }
 
 ?>
