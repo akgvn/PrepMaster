@@ -105,7 +105,6 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View view) {
-        grade = "1";
         if(view == back)
             onBackPressed();
         else if(view == next){
@@ -122,6 +121,9 @@ public class PracticeActivity extends AppCompatActivity implements View.OnClickL
             }
             else
                 getQuest();
+
+            grade = "1";
+
         }
         else if(view == task){
             Intent intentOptions = new Intent( this , OptionsActivity.class );

@@ -21,7 +21,7 @@
 
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/textId"
         android:layout_width="231dp"
         android:layout_height="56dp"
         android:layout_marginStart="12dp"
@@ -32,20 +32,6 @@
         android:textSize="25dp"
         app:layout_constraintStart_toEndOf="@+id/imageView3"
         app:layout_constraintTop_toTopOf="@+id/imageView3" />
-
-    <TextView
-        android:layout_width="224dp"
-        android:layout_height="41dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="8dp"
-        android:text="12 kez oynandı"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintEnd_toEndOf="@+id/textView8"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/textView8"
-        app:layout_constraintTop_toBottomOf="@+id/textView8"
-        app:layout_constraintVertical_bias="0.75" />
 
 
     <RelativeLayout
@@ -129,53 +115,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         app:srcCompat="@android:color/white" />
-
-    <ImageView
-        android:id="@+id/enYuksekPuanMavi"
-        android:layout_width="114dp"
-        android:layout_height="64dp"
-        app:layout_constraintBottom_toBottomOf="@+id/enYuksekPuanGenel"
-        app:layout_constraintEnd_toEndOf="@+id/enYuksekPuanGenel"
-        app:layout_constraintTop_toTopOf="@+id/enYuksekPuanGenel"
-        app:layout_constraintVertical_bias="1.0"
-        app:srcCompat="@android:color/holo_blue_dark"
-        tools:ignore="MissingConstraints" />
-
-    <TextView
-        android:id="@+id/textView9"
-        android:layout_width="115dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:paddingTop="10dp"
-        android:text="124"
-        android:textAlignment="center"
-        android:textSize="30dp"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toBottomOf="@+id/enYuksekPuanMavi"
-        app:layout_constraintEnd_toEndOf="@+id/enYuksekPuanGenel"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/enYuksekPuanMavi"
-        app:layout_constraintTop_toTopOf="@+id/enYuksekPuanMavi"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView10"
-        android:layout_width="250dp"
-        android:layout_height="62dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="17dp"
-        android:text="En Yüksek Puan"
-        android:textColor="#000000"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@+id/enYuksekPuanGenel"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="@+id/enYuksekPuanGenel"
-        app:layout_constraintTop_toTopOf="@+id/enYuksekPuanGenel"
-        app:layout_constraintVertical_bias="1.0" />
 
     <ImageView
         android:id="@+id/imageView6"
@@ -286,16 +225,12 @@
         android:id="@+id/textView14"
         android:layout_width="250dp"
         android:layout_height="62dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
         android:paddingLeft="10dp"
         android:paddingTop="17dp"
         android:text="Toplam Doğu Sayısı"
         android:textColor="#000000"
         android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="@+id/toplamDogruSayisi"
-        app:layout_constraintEnd_toStartOf="@+id/textView9"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/toplamDogruSayisi"
         app:layout_constraintTop_toTopOf="@+id/toplamDogruSayisi"
         app:layout_constraintVertical_bias="1.0" />

@@ -20,8 +20,6 @@ import com.google.gson.Gson;
 
 import java.util.Random;
 
-import static android.os.SystemClock.sleep;
-
 public class ReminderActivity extends AppCompatActivity implements View.OnClickListener {
 
     private Button back;
@@ -100,7 +98,6 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
         else if(view == next){
             logAnswer();
             hold = true;
-            sleep(5000);
             getQuest();
             grade = "1";
         }
@@ -200,7 +197,6 @@ public class ReminderActivity extends AppCompatActivity implements View.OnClickL
                 ans4.setText(bundle.getString("msg5"));
             }
         }
-
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
             finish();

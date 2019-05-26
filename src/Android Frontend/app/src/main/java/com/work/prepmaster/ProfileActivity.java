@@ -1,11 +1,14 @@
 package com.work.prepmaster;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -15,6 +18,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView home;
     private ImageView highScore;
     private ImageView profile;
+    private TextView id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +39,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         profile = findViewById(R.id.imgviewProfile);
         profile.setOnClickListener(this);
+
+        id = findViewById(R.id.textId);
+        SharedPreferences sharedPref = this.getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
+        id.setText(sharedPref.getString("userName", ""));
     }
 
     @Override

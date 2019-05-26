@@ -29,7 +29,6 @@ public class Dictionary extends AppCompatActivity implements View.OnClickListene
     private ImageView highScore;
     private ImageView profile;
 
-    @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
