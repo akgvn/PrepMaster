@@ -17,8 +17,13 @@ import com.androidnetworking.error.ANError;
 import com.androidnetworking.interfaces.StringRequestListener;
 import com.google.gson.Gson;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class StatisticActivity extends AppCompatActivity implements View.OnClickListener {
-    private Button back;
+
+    private List<ListviewModel> lvModel;
+    private ContactAdapter adapter;
 
     private ImageView task;
     private ImageView dict;
@@ -54,9 +59,6 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
 
     @Override
     public void onClick(View view) {
-        if(view == back)
-            onBackPressed();
-
         if(view == task){
             Intent intentOptions = new Intent( this , OptionsActivity.class );
             startActivity(intentOptions);
@@ -100,12 +102,12 @@ public class StatisticActivity extends AppCompatActivity implements View.OnClick
         String arrayOne[] = new String[20];
         if(responseScore.getScore() != null) {
             arr = responseScore.getScore();
+            lvModel = new ArrayList<>();
             for(int i = 0; i< 20;i++){
-                arrayOne[i] = arr[0][i] + "   :   " + arr[1][i];
+                lvModel.add(new ListviewModel(arr[0][i], arr[1][i]));
             }
-            ArrayAdapter<String> arrayAdapter=new ArrayAdapter<>
-                    (this, R.layout.item_dark_text, arrayOne);
-            list.setAdapter(arrayAdapter);
+            adapter = new ContactAdapter(this,R.layout.listview_identify,lvModel);
+            list.setAdapter(adapter);
         }
         else{
             Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
