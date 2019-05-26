@@ -8,7 +8,7 @@ note right of Server: Calculates and picks the questions \nfor this particular u
 
 Server->App: Sends the data
 
-App->User: Displays the questions.
+App->User: Displays the some questions.
 
 User->App: Finishes study after \nanswering the questions.
 
