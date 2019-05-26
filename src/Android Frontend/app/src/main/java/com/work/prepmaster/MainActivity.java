@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageView highScore;
     private ImageView profile;
 
-    private Button reminder;
+    private ImageView reminder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         profile = findViewById(R.id.imgviewProfile);
         profile.setOnClickListener(this);
 
-        reminder = findViewById(R.id.buttonRemind);
+        reminder = findViewById(R.id.imgRemind);
         reminder.setOnClickListener(this);
     }
     @Override

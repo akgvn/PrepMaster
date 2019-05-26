@@ -16,13 +16,13 @@ public class OptionsActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView home;
     private ImageView highScore;
     private ImageView profile;
-    private Button buttunQuit;
+    private ImageView buttunQuit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_options);
 
-        buttunQuit = findViewById(R.id.buttonQuit);
+        buttunQuit = findViewById(R.id.imgQuit);
         buttunQuit.setOnClickListener(this);
 
         task = findViewById(R.id.imgviewTask);
