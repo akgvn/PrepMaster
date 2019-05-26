@@ -4,7 +4,7 @@ PrepMaster aims to facilitate a English preparatory school students' learning.
 ## Scope of the system
 PrepMaster will work on Android devices and mainly help students with retention of the English words in their memory.
 ## Objectives and success criteria of the project
-PrepMaster shall include the (Çankaya University's) English preparatory school's target vocabulary and questions that may help students recall these words. Questions' asking shall be timed according to the SuperMemo 2 spacing formula.
+PrepMaster shall include the (Çankaya University's) English preparatory school's target vocabulary and questions that may help students recall these words. Questions' asking shall be timed according to the SuperMemo formula.
 ## Definitions, acronyms, and abbreviations
 None so far.
 ## References
@@ -37,10 +37,10 @@ PrepMaster will use SuperMemo algorithm to make sure students retain their knowl
 - PrepMaster shall send as small data as possible to server (an server to PrepMaster) to make sure it is performant.
 
 ### Supportability
-- It shall be easy to add features such as new question types to the PrepMaster app.
+- It shall be easy to add features such as new question types to the PrepMaster application.
 
 ### Implementation
-- PrepMaster app shall work on devices with Android OS.
+- PrepMaster application shall work on devices with Android OS.
 - PrepMaster server shall run on servers with PHP 7+ & MySQL 5+ support.
 
 ### Interface
@@ -56,14 +56,14 @@ PrepMaster will use SuperMemo algorithm to make sure students retain their knowl
 ## System models
 ### Scenarios
 #### Practicing English Words
-1. User launches the app and logs in.
+1. User launches the application and logs in.
 2. User picks the option for practicing.
 3. User decides what kind of practice that they want to do and starts practicing.
 4. App requests and downloads latest study data from the server.
-5. App shows the question.
+5. App shows the question .
 6. User answers the question (multiple-choice, filling the blanks etc.).
 7. App checks correctness of the answer.
-8. Correctness info gets logged to the database.
+8. Correctness info gets logged to the database .
 9. Reminding algorithm calculates when to remind the user for studying a particular word.
 
 ### Use case model
