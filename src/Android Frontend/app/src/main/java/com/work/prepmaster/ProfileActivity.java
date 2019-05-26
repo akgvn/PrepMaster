@@ -5,10 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.StringRequestListener;
+import com.google.gson.Gson;
 
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -19,6 +27,11 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     private ImageView highScore;
     private ImageView profile;
     private TextView id;
+    private TextView score;
+    private TextView totalTrue;
+    private TextView totalFalse;
+
+    private String userName;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +55,15 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
 
         id = findViewById(R.id.textId);
         SharedPreferences sharedPref = this.getSharedPreferences("sharedPref", Context.MODE_PRIVATE);
-        id.setText(sharedPref.getString("userName", ""));
+        userName = sharedPref.getString("userName", "");
+        id.setText(userName);
+
+        score = findViewById(R.id.textTotalScore);
+
+        totalTrue = findViewById(R.id.textTotalTrue);
+
+        totalFalse = findViewById(R.id.textTotalFalse);
+        getScore();
     }
 
     @Override
@@ -67,6 +88,38 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         if(view == profile){
             Intent intentProfile = new Intent( this , ProfileActivity.class );
             startActivity(intentProfile);
+        }
+    }
+    private void getScore() {
+        AndroidNetworking.post("http://bilimtadinda.com/cankahard/profil_score.php")
+                .addBodyParameter("user_nick_name" , userName)
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .getAsString(new StringRequestListener() {
+                    @Override
+                    public void onResponse(String  response) {
+                        Log.i("ProfileActivity",response);
+                        request(response);
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                        Log.e("ProfileActivity",error.getMessage());
+                    }
+                });
+    }
+    private void request(String response) {
+        Gson gson = new Gson();
+        ResponseProfile responseProfile = gson.fromJson(response,ResponseProfile.class);
+        Bundle bundle;
+        if(responseProfile.getReq() != null) {
+            bundle = responseProfile.getReq();
+            score.setText(bundle.getString("userScore"));
+            totalTrue.setText(bundle.getString("userTrue"));
+            totalFalse.setText(bundle.getString("userFalse"));
+        }
+        else{
+            Toast.makeText(this, "\"Failed\"", Toast.LENGTH_SHORT).show();
+            finish();
         }
     }
 }
