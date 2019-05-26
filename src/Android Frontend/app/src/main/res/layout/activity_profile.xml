@@ -8,27 +8,28 @@
     tools:context=".ProfileActivity">
 
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="109dp"
-        android:layout_height="121dp"
-        tools:layout_editor_absoluteX="16dp"
-        tools:layout_editor_absoluteY="56dp"
-        tools:srcCompat="@mipmap/student" />
-
-
     <TextView
         android:id="@+id/textId"
-        android:layout_width="231dp"
+        android:layout_width="341dp"
         android:layout_height="56dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginLeft="12dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="68dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="#ffffff"
+        android:paddingTop="10dp"
         android:text="Mistova"
+        android:textAlignment="center"
         android:textColor="#000000"
         android:textSize="25dp"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3" />
+        app:layout_constraintBottom_toTopOf="@+id/imageView6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.425"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
 
     <RelativeLayout
@@ -105,13 +106,13 @@
         android:layout_height="62dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="72dp"
+        android:layout_marginTop="204dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.652"
+        app:layout_constraintHorizontal_bias="0.478"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@android:color/white" />
 
     <ImageView
