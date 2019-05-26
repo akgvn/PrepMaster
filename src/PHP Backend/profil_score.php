@@ -23,7 +23,8 @@ function turkce($php)
 if( $_POST )
 {
 
-    $isim = trim( $_POST[ "user_nick_name" ] );
+    $isim = trim( $_POST[ "user_nick_name" ] );  // receive user_nick_name from App
+
 
     if( isset( $isim ) )
     {
@@ -36,9 +37,9 @@ if( $_POST )
 
                 $arraym = array();
     
-                $y1     = $isim;/// MUSTAFADAN GELECEK user_nick_name
+                $y1     = $isim;
                 
-                $sorgu  = $db->prepare( "SELECT * FROM users WHERE user_nick_name=?" );
+                $sorgu  = $db->prepare( "SELECT * FROM users WHERE user_nick_name=?" ); // check data base and assign $sorgu
                 
                 $sorgu->execute( array( $y1 ) );
 
