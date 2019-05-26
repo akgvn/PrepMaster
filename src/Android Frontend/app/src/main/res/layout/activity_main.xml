@@ -92,7 +92,7 @@
         android:layout_marginTop="196dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:src="@mipmap/play_button1"
+        android:src="@mipmap/play_a_game"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
