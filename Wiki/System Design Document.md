@@ -1,6 +1,6 @@
 # Introduction
 ## Purpose of the system
-PrepMaster aims to facilitate a English preparatory school students' learning.
+PrepMaster Application aims to facilitate a English preparatory school students' learning.
 
 ## Design goals
 
@@ -20,7 +20,7 @@ Since the system is a greenfield project, we're starting from scratch.
 
 ## Overview
 
-The system consists of a mobile app and a server.
+The system consists of a mobile app for android and a server.
 
 Server will contain a database to store user data and execute important business logic such as the reminding algorithm on this data.
 
@@ -41,7 +41,7 @@ Android app will be the front-end software that which will show and ask question
 
 ## Persistent data management
 
-There will be a MySQL server to manage data for all users. The Android app will download the necessary data each time it runs.
+There will be a MySQL server to manage data for all our users. The Android app will download the necessary data each time it runs.
 
 ## Access control and security
 
@@ -65,7 +65,7 @@ Each change will be time stamped by the app and and the server will check the co
 
 PrepMaster app can be started and shut down easily. It will store the data to send the database in plain text until it is safely sent.
 
-When the PrepMaster server is started, it will start doing the Supermemo calculations for the most frequent users.
+When the PrepMaster server is started, it will start doing the Supermemo calculations goodly for the most frequent users.
 
 When the PrepMaster server is shut down, it will make sure any data sent from the app is processed and stop accepting any more.
 
