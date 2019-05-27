@@ -65,7 +65,7 @@ Each change will be time stamped by the app and and the server will check the co
 
 PrepMaster app can be started and shut down easily. It will store the data to send the database in plain text until it is safely sent.
 
-When the PrepMaster server is started, it will start doing the Supermemo calculations goodly for the most frequent users.
+When the PrepMaster server is started, it will start doing the Supermemo calculations for the most frequent users.
 
 When the PrepMaster server is shut down, it will make sure any data sent from the app is processed and stop accepting any more.
 

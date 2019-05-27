@@ -16,71 +16,57 @@ function turkce($php)
     $php = str_replace("&#350;", "Ş", $php);
     $php = str_replace("&#231;", "ç", $php);
     $php = str_replace("&#199;", "Ç", $php);
-    
+
     return $php;
 }
-    
-if( $_POST )
-{
 
-    $isim = trim( $_POST[ "user_nick_name" ] );  // receive user_nick_name from App
+if ($_POST) {
 
+    $isim = trim($_POST["user_nick_name"]); // receive user_nick_name from App
 
-    if( isset( $isim ) )
-    {
+    if (isset($isim)) {
 
-        if( !empty( $isim ) )
-        {
+        if (!empty($isim)) {
 
-            if( strlen( $isim ) <= 120 )
-            {
+            if (strlen($isim) <= 120) {
 
                 $arraym = array();
-    
-                $y1     = $isim;
-                
-                $sorgu  = $db->prepare( "SELECT * FROM users WHERE user_nick_name=?" ); // check data base and assign $sorgu
-                
-                $sorgu->execute( array( $y1 ) );
 
-                if( $sorgu -> rowCount() )
-                {
+                $y1 = $isim;
 
-                    foreach( $sorgu as $yaz )
-                    {
+                $sorgu = $db->prepare("SELECT * FROM users WHERE user_nick_name=?"); // check data base and assign $sorgu
 
-                       // $arraym[0] = turkce($yaz["user_nick_name"]);
+                $sorgu->execute(array($y1));
+
+                if ($sorgu->rowCount()) {
+
+                    foreach ($sorgu as $yaz) {
+
+                        // $arraym[0] = turkce($yaz["user_nick_name"]);
                         $arraym[0] = $yaz["user_score"];
                         $arraym[1] = $yaz["user_true_ans"];
                         $arraym[2] = $yaz["user_false_ans"];
 
                     }
-     
+
                     $metin .= '{"user_score":' . '"' . $arraym[0] . '"' . ',"user_true_ans":' . '"' . $arraym[1] . '"' . ',"user_false_ans":' . '"' . $arraym[2] . '"' . '}';
-                    
+
                     echo $metin;
 
-                }
-                else
-                {
+                } else {
 
                     $hata_kodu = "";
 
                     echo $metin .= '{"user_score":' . '"' . $hata_kodu . '"' . ',"user_true_ans":' . '"' . $hata_kodu . '"' . ',"user_false_ans":' . '"' . $hata_kodu . '"' . '}';
 
                 }
- 
+
             }
 
         }
 
     }
 
-}
-else
-{
+} else {
     echo "istek yok";
 }
-    
-         
-?>
